@@ -1,0 +1,38 @@
+{% load static %}
+<header>
+    <div class="header wrapper">
+        <div class="header-text"> <span class="header-text-span">Благотворительный фонд поддержки детей имени императрицы <a href="#">Александры Федоровны Романовой</a></span></div>
+        <div class="header-info">
+            <div class="logo"><a href="/"><img class="img-logo" src="{% static 'img/logo.png '%}" alt="logo"></a></div>
+            <div class="teg"><a href="#">#творимдобровместе</a></div>
+            <div class="help">
+                <div class="need_help"><a href="#">Нужна помощь</a></div>
+                <div class="want_help"><a href="#">Хочу помочь</a></div>
+            </div>
+            <input type="checkbox" id="nav-toggle" hidden>
+            <div class="toggle"><label for="nav-toggle" class="nav-toggle" onclick></label></div>
+
+            <nav class="nav">
+                <label for="nav-toggle" class="nav-toggle" onclick></label>
+                <ul class="menu">
+                    <li><a href="#">О фонде</a></li>
+                    <li><a href="#">Команда</a></li>
+                    <li><a href="{% url 'child:child_list' %}">Дети</a></li>
+                    <li><a href="#">Программы</a></li>
+                    <li><a href="{% url 'news:post_list' %}">Новости</a></li>
+                    <li><a href="#">Отчеты</a></li>
+                    <li><a href="{% url 'news:grad_list' %}">Благодарности</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+                <div class="social">
+                    <a href=""><img src="{% static 'img/instagram.svg'%}" alt="insta_ico" class="img-social"></a>
+                    <a href=""><img src="{% static 'img/vk-social-network-logo.svg'%}" alt="vk_ico" class="img-social"></a>
+                    <a href=""><img src="{% static 'img/facebook.svg'%}" alt="face_ico" class="img-social"></a>
+                    <a href=""><img src="{% static 'img/youtube.svg'%}" alt="youtube_ico" class="img-social"></a>
+                    <a href=""><img src="{% static 'img/telegram.svg'%}" alt="teleg_ico" class="img-social"></a>
+                </div>
+            </nav>
+            <div class="mask-content"><label for="nav-toggle" class="mask-content-label" onclick></label></div>
+        </div>
+    </div>
+</header>

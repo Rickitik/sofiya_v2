@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Благодарности{% endblock title %}
+
+{% block description %}Наш фонд благодарит всех откликнувшихся за посильную помощь деткам{% endblock description %}
+
+{% block keywords %}благотворительный фонд, благодарности{% endblock keywords %}
+
+{% block page_id %}graditude_page{% endblock page_id %}
+
+{% block content %}
+    <section class="graditude_info wrapper">
+        <div class="graditude_page_info">
+            <h1>Благодарности</h1>
+        </div>
+    </section>
+    <section class="graditude wrapper">
+        <div class="graditude_list">
+            <input type="radio" checked="checked" name="help_radio" id="us_grad" hidden/>
+            <input type="radio" name="help_radio" id="we_grad" hidden/>
+            <label for="us_grad" class="help-toggle" id="need_help" onclick>Нас благодарят</label>
+            <label for="we_grad" class="help-toggle" id="already_helped" onclick>Мы благодарим</label>
+
+            <div id="us_grad_id" class="need_help_children">
+                {% for item in graditude_list %}
+                <div class="card_wrapper">
+                    <a href="{{ item.get_absolute_url }}">
+                        <div class="card-img"><img src="{{ item.photo.url }}" alt="Благодарность {{ item.title }}"></div>
+                        <div class="card-info">
+                            <h4>{{ item.title }}</h4>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div id="we_grad_id" class="already_help_children">
+                <div class="thanks"><p>Огромное спасибо всем, кто помог и помогает нам, желаем всем крепкого здоровья!</p></div>
+                {% for item in we_graditude %}
+                <div class="card_wrapper">
+                    <a href="{{ item.get_absolute_url }}">
+                        <div class="card-img"><img src="{{ item.photo.url }}" alt="Благодарим {{ item.title }}"></div>
+                        <div class="card-info">
+                            <h4>{{ item.title }}</h4>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %} {% endblock scripts %}

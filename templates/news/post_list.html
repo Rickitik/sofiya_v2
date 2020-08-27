@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Новости фонда{% endblock title %}
+
+{% block description %}Главные события и новости фонда{% endblock description %}
+
+{% block keywords %}благотворительный фонд, новости, события{% endblock keywords %}
+
+{% block page_id %}news_page{% endblock page_id %}
+
+{% block content %}
+    <section class="news wrapper">
+        <div class="news_wrapper">
+            <div class="news_head">
+                <div class="news_title">
+                    <h1>Новости фонда</h1>
+                </div>
+                <div class="news_year">
+                    <input type="checkbox" id="news_list_toggle" hidden>
+                    <div class="news_toggle"><label for="news_list_toggle" onclick>2020 год</label></div>
+                    <div class="years_container">
+                        {% for year in years_list %}
+                        <div class="year"><label>{{ year }}</label></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="news_list">
+                {% for post in post_list %}
+                <div class="news_item">
+                    <div class="news_img"><img src="{{post.photo.url}}" alt=""></div>
+                    <div class="news_item_title"><a href="{{post.get_absolute_url}}">{{ post.title }}</a></div>
+                    <div class="news_date"><span>{{ post.publish|date }}</span></div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="news-more"><a href="#">Загрузить еще</a></div>
+        </div>
+    </section>
+{% endblock content %}
+{% block scripts %} {% endblock scripts %}

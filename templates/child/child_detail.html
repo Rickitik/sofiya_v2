@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ child.name }} {{ child.surname }}{% endblock title %}
+
+{% block description %}Хотим познакомить Вас с историей {{ child.name_rod }} {% endblock description %}
+
+{% block keywords %}благотворительный фонд, новости, события, помощь{% endblock keywords %}
+
+{% block page_id %}child_page{% endblock page_id %}
+
+{% block content %}
+    <section class="child_help wrapper">
+        <div class="child_detail_info">
+            <div class="child_name"><h1>{{ child.name }} {{ child.surname }}</h1></div>
+
+            <div class="img_sum_wrapper">
+                <div class="child_detail_img"><img src="{{ child.photo.url }}" alt="фото {{ child.name_rod }}"></div>
+                <div class="money_progress">
+                    {% if child.status == 'need_help' %}
+                        <h4>Прогресс</h4>
+                        <p class="money_count">Собрано {{ child.money_collected }} ₽</p>
+                        <div class="progress">
+                            <progress max="{{ child.money_need }}" value="{{ child.money_collected }}"></progress>
+                        </div>
+                        <p class="money_count">Осталось собрать {{ child.left_amount_money }} ₽</p>
+                        <div class="all_children-button"><a href="#">Помочь</a></div>
+                    {% else %}
+                        <h4></h4>
+                        <p class="thanks_for_help">Средства собраны. {{ child.problem_solution }} Всем огромное спасибо за помощь!</p>
+                        <p class="money_count">Собрано {{ child.money_collected }} ₽</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="child_data">
+                <h3>Данные ребенка</h3>
+                <p class="data">Место жительства: {{ child.place }}</p>
+                <p class="data">Возраст: {{ child.age }}.</p>
+                <p class="problem">{{ child.problem }}</p>
+            </div>
+            <div class="child_history">
+                <h3>История {{ child.name_rod }}</h3>
+                {{ child.history|safe }}
+            </div>
+        </div>
+
+    </section>
+    <section class="info wrapper">
+        <div class="need-help-info-block">
+            <div class="slider-wrapper">
+                <div class="info-heading">
+                    {% if child.status == 'need_help' %}
+                        <h2>Похожие истории</h2>
+                    {% else %}
+                        <h2>Дети, которым еще нужна помощь</h2>
+                    {% endif %}
+                    <div class="already"><a href="{% url 'child:child_list' %}">Уже помогли</a></div>
+                    <div class="slider-controls">
+                        <span class="slider-prev"></span>
+                        <span class="slider-next"></span>
+                    </div>
+                </div>
+                <div class="slider-body">
+                    <div class="slider-thumbs-1">
+                        <!-- Элемент слайдера-->
+                        {% for item in also_need_help %}
+                            <div class="slick-slide">
+                            <div class="slide-img">
+                                <img src="{{ item.photo.url }}" alt="фото {{ item.name_rod }}" class="child-img">
+                            </div>
+                            <div class="slide_info">
+                                <h3 class="child-name">{{ item.name }} {{ item.surname }}</h3>
+                                <p class="child-description">{{ item.problem }}</p>
+                                <div><progress max="{{ item.money_need }}" value="{{ item.money_collected }}"></progress></div>
+                                <span class="child-left-to-collect">Осталось собрать {{ item.left_amount_money }} ₽</span>
+                                <div class="child-more"><a href="{{ item.get_absolute_url }}">Подробнее</a></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.3.1.min.js"
+            integrity="sha256-APllMc0V4lf/Rb5Cz4idWUCYlBDG3b0EcN1Ushd3hpE="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'slick/slick.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $('.slider-thumbs-1').slick({
+            dots: false,
+            infinite: true,
+            vertical: false,
+            speed: 800,
+            autoplay: true,
+            autoplaySpeed: 10000,
+            arrows: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            prevArrow: $('.slider-prev'),
+            nextArrow: $('.slider-next'),
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 2,
+                        responsive: false,
+
+                  }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        responsive: false,
+                  }
+                },
+                {
+                    breakpoint: 480,
+                    settings: "unslick"
+                }
+              ]
+            });
+        });
+    </script>
+{% endblock scripts %}

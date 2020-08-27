@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Вместе мы сможем спасти множество жизней!{% endblock title %}
+
+{% block description %}В нашем мире есть много детей, которым необходима наша помощь. Вместе мы сможем спасти множество жизней!{% endblock description %}
+
+{% block keywords %}благотворительный фонд, необходима помощь, помочь детям{% endblock keywords %}
+
+{% block page_id %}children_page{% endblock page_id %}
+
+{% block content %}
+    <section class="children_info wrapper">
+        <div class="children_page_info">
+            <h1>Вместе мы сможем спасти множество жизней!</h1>
+        </div>
+    </section>
+    <section class="children wrapper">
+        <div class="children_list">
+            <input type="radio" checked="checked" name="help_radio" id="need_help_selector" hidden/>
+            <input type="radio" name="help_radio" id="already_help_selector" hidden/>
+            <label for="need_help_selector" class="help-toggle" id="need_help" onclick>Сбор средств</label>
+            <label for="already_help_selector" class="help-toggle" id="already_helped" onclick>Уже помогли</label>
+
+            <div id="need_help_id" class="need_help_children">
+                {% for child in child_list %}
+                <div class="card_wrapper">
+                    <div class="card-img"><img src="{{ child.photo.url }}" alt="фото {{ child.name_rod }}"></div>
+                    <div class="card-info">
+                        <h4>{{ child.name }} {{ child.surname }}</h4>
+                        <p>{{ child.problem }}</p>
+                        <div><progress max="{{ child.money_need }}" value="{{ child.money_collected }}"></progress></div>
+                        <span class="card-left-to-collect">Осталось собрать {{ child.left_amount_money }} ₽</span>
+                        <div class="child-more"><a href="{{ child.get_absolute_url }}">Подробнее</a></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div id="already_help_id" class="already_help_children">
+                <div class="thanks"><p>Огромное спасибо всем, кто помог и помогает нам, желаем всем крепкого здоровья!</p></div>
+                {% for child in already_helped %}
+                <div class="card_wrapper">
+                    <div class="card-img"><img src="{{ child.photo.url }}" alt="фото {{ child.name_rod }}"></div>
+                    <div class="card-info">
+                        <h4>{{ child.name }} {{ child.surname }}</h4>
+                        <p>{{ child.problem }}</p>
+                        <div class="total"><span class="card-collected">Собрано {{ child.money_collected }} ₽</span></div>
+                        <div class="child-more"><a href="{{ child.get_absolute_url }}">Подробнее</a></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="help-us wrapper">
+        <div class="help_us_team">
+            <p>Вы можете совершить доброе дело прямо здесь и сейчас!</p>
+            <div class="but-join"><a href="#">Внести пожертвование</a></div>
+        </div>
+    </section>
+{% endblock content %}
+{% block scripts %} {% endblock scripts %}

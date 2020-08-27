@@ -1,0 +1,43 @@
+
+{% load static %}
+<footer>
+    <div class="footer wrapper">
+        <div class="footer-info">
+            <div class="footer-logo"><a href="#"><img src="{% static 'img/logo.png '%}" alt="logo"></a></div>
+            <div class="contacts">
+                <span class="phone">+7 (495) 981-08-00</span>
+                <span class="email"><a href="mailto:fondpochta@mail.ru">fondpochta@mail.ru</a></span>
+            </div>
+            <div class="address">
+                <span>105082, Москва, <br>ул. Фридриха Энгельса, 75, стр. 3</span>
+            </div>
+        </div>
+        <div class="footer-menu">
+            <a href="#">О фонде</a>
+            <a href="#">Команда</a>
+            <a href="{% url 'child:child_list' %}">Дети</a>
+            <a href="#">Программы</a>
+            <a href="{% url 'news:post_list' %}">Новости</a>
+            <a href="#">Отчеты</a>
+            <a href="{% url 'news:grad_list' %}">Благодарности</a>
+            <a href="#">Контакты</a>
+        </div>
+        <div class="footer-social">
+            <a class="social_img" href="#"><img src="{% static 'img/instagram.svg'%}" alt="insta_ico"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/vk-social-network-logo.svg'%}" alt="vk_ico"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/facebook.svg'%}" alt="face_ico"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/youtube.svg'%}" alt="youtube_ico"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/telegram.svg'%}" alt="teleg_ico"></a>
+        </div>
+        <div class="footer-info-offerta">
+            <div class="copyright"><span>© БФ им. А. Ф. Романовой, 2020</span></div>
+            <div class="with-help">
+                <span>При поддержке</span>
+                <div class="mini-logo"><img src="{% static 'img/Image1.png'%}" alt="Альтернатива"></div>
+            </div>
+            <div class="offert">
+                <p>Делая пожертвование, вы принимаете условия нашей <a href="#">Оферты</a></p>
+            </div>
+        </div>
+    </div>
+</footer>

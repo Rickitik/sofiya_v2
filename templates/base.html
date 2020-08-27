@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <title>{% block title %} {% endblock title %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="{% block description %} {% endblock description %}" />
+    <meta name="keywords" content="{% block keywords %} {% endblock keywords %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css'%}"/>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+</head>
+<body>
+    {% include 'include/header.html' %}
+    <main id="{% block page_id %} {% endblock page_id %}">
+        {% block content %}
+
+        {% endblock content %}
+    </main>
+    {% include 'include/footer.html' %}
+    {% block scripts %}{% endblock scripts %}
+</body>
+</html>
