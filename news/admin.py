@@ -32,7 +32,7 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Graditude)
 class GraditudeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'get_image', 'publish', 'draft')
+    list_display = ('id', 'title', 'get_image', 'publish', 'draft', 'status')
     readonly_fields = ('get_image',)
     list_display_links = ('id', 'title')  # Ссылка по имени и фамилии на основную запись
     list_filter = ('draft',)  # Фильтр по категории

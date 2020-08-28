@@ -51,7 +51,7 @@ class Graditude(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return reverse('news:graditude_detail', kwargs={'slug': self.url})
+		return reverse('news:grad_detail', kwargs={'slug': self.url})
 
 	class Meta:
 		ordering = ('-publish',)

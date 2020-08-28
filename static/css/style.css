@@ -17,7 +17,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 1001;
     background-color: #fff;
 }
 main {
@@ -121,29 +121,53 @@ main {
 
 
 }
+
 .intro-img1{
-    background: url(../img/screen1.png) center no-repeat #000;
+    /*background: url(../img/screen1.png) center no-repeat #dddddd;*/
     width: 100%;
     height: 722px;
     text-align: left;
     z-index: 0;
 
 }
-.intro-img1::after{
-    content:'';
-    background: #000000 0 0 no-repeat padding-box;
+.page-video {
     position: absolute;
-    opacity: 0.4;
     left: 0;
+    top: 0;
     bottom: 0;
+    z-index: 1;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    overflow: hidden;
 }
-.intro-text{
+
+.page-video:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.page-video .video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
     margin-top: 150px;
     margin-left: 85px;
-
 }
 .intro-text1{
     font-size: 64px;
@@ -460,7 +484,7 @@ span.news_date {
 }
 .banner{
     height: 550px;
-    background: url(../img/crop-group-stacking-hands-together-3830745.png) center no-repeat #000;
+    background: url(../img/crop-group-stacking-hands-together-3830745.jpg) center no-repeat #000;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -1869,10 +1893,14 @@ span.news_date {
     color: #1E88E5;
 }
 
-#graditude_page .graditude_page_info, #graditude_page .graditude_list {
+#graditude_page .graditude_page_info,
+#graditude_page .graditude_list,
+#graditude_detail_page .graditude_page_info,
+#graditude_detail_page .graditude_list{
     padding: 100px 85px 0;
 }
-#graditude_page .graditude_page_info h1 {
+#graditude_page .graditude_page_info h1,
+#graditude_detail_page .graditude_page_info h1{
     font-size: 48px;
 }
 .graditude {
@@ -1949,8 +1977,76 @@ span.news_date {
     font-size: 16px;
     padding-bottom: 50px;
 }
+#graditude_detail_page .graditude {
+     padding-bottom: 0;
+}
+#graditude_detail_page .graditude_list{
+    padding-top: 50px;
+    display: flex;
+}
+#graditude_detail_page .slider-for{
+    max-width: 730px;
+    width: 100%;
+    height: 978px;
+}
+#graditude_detail_page .slider-for h2{
+    padding-bottom: 30px;
+}
+#graditude_detail_page .slick-slide {
+    max-width: 730px !important;
+}
+#graditude_detail_page .slider-nav .slick-slide img {
+    width: 100%;
+}
+#graditude_detail_page .slider-for img{
+	width: 600px;
+    height: auto;
+    margin: 0 auto;
+}
+#graditude_detail_page .slider-for .slick-prev,
+#graditude_detail_page .slider-for .slick-next {
+    color: #000;
+    line-height: 20px;
+    top: 60px;
+    z-index: 1000;
+}
+#graditude_detail_page .slider-for .slick-prev:before,
+#graditude_detail_page .slider-for .slick-next:before {
+    color: #000;
+    font-size: 27px;
+}
+#graditude_detail_page .slider-for .slick-next{
+    right: 5px;
+}
+#graditude_detail_page .slider-for .slick-prev{
+    right: 40px;
+    left: auto;
+}
+#graditude_detail_page .slider-nav{
+    width: 255px;
+    margin: 0 auto;
+}
+#graditude_detail_page .slider-nav .slick-vertical .slick-slide {
+    margin-bottom: 15px !important;
+}
+#graditude_detail_page .slider-nav .slick-slide h2{
+    padding-bottom: 7px;
+    font-size: 18px;
+}
+#graditude_detail_page .slider-nav.slick-slider .slick-list {
+    padding: 50px 0 0 !important;
+}
 
+@media (max-width: 992px) {
+  .page-video {
+    background: url('../img/screen2.jpg')50% 50% no-repeat;
+    background-size: cover;
+  }
 
+  .page-video .video {
+    display: none;
+  }
+}
 
 /* Медиа 768 --------------------------------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
@@ -1982,7 +2078,7 @@ span.news_date {
         background-image: url(../img/screen2.png);
         height: 432px;
     }
-    .intro-text{
+    .content{
         margin-top: 100px;
         margin-left: 39px;
     }
@@ -2063,7 +2159,7 @@ span.news_date {
     }
 
     .banner {
-        background: url(../img/crop-group-stacking-hands-together-3830745.png) 25% 40% no-repeat #000;
+        background: url(../img/crop-group-stacking-hands-together-3830745.jpg) 25% 40% no-repeat #000;
     }
     .join-info h3 {
         width: 208px;
@@ -2459,7 +2555,10 @@ span.news_date {
     #otchet_page .news-more {
         width: 330px;
     }
-    #graditude_page .graditude_page_info, #graditude_page .graditude_list {
+    #graditude_page .graditude_page_info,
+    #graditude_detail_page .graditude_page_info,
+    #graditude_page .graditude_list,
+    #graditude_detail_page .graditude_list  {
         padding: 100px 39px 0;
     }
     #graditude_page .graditude_list .card_wrapper{
@@ -2470,6 +2569,26 @@ span.news_date {
     #graditude_page .graditude_list .card-img{
         width: 210px;
         height: 281px;
+    }
+    #graditude_detail_page .graditude_list {
+        padding-top: 50px;
+        display: flex;
+        flex-flow: row wrap;
+    }
+    #graditude_detail_page .slider-for {
+        height: auto;
+    }
+    #graditude_detail_page .slider-nav {
+        width: 90%;
+        margin: 0 auto 30px;
+    }
+    #graditude_detail_page .slider-nav .slick-slide h2 {
+        font-size: 16px;
+        padding-left: 7px;
+    }
+    #graditude_detail_page .slider-nav .slick-slide img {
+        width: 90%;
+        margin: 0 auto;
     }
 
 
@@ -2524,7 +2643,7 @@ span.news_date {
     .intro-img1{
       height: 420px;
     }
-    .intro-text{
+    .content{
         margin-top: 70px;
         margin-left: 15px;
     }
@@ -2669,7 +2788,7 @@ span.news_date {
         margin: 23px auto 60px;
     }
     .banner {
-        background: url(../img/crop-group-stacking-hands-together-3830745.png) 0 40% no-repeat #000;
+        background: url(../img/crop-group-stacking-hands-together-3830745.jpg) 0 40% no-repeat #000;
         background-size: cover;
         height: 450px;
     }
@@ -3171,7 +3290,7 @@ span.news_date {
     #news_page .news_item{
         width: 100%;
         margin-right: 0;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
     }
     .news-more {
         width: 100%;
@@ -3222,13 +3341,20 @@ span.news_date {
     #otchet_page .news-more {
         width: 100%;
     }
-    #graditude_page .graditude_page_info, #graditude_page .graditude_list {
+    #graditude_page .graditude_page_info,
+    #graditude_detail_page .graditude_page_info,
+    #graditude_detail_page .graditude_list,
+    #graditude_page .graditude_list {
         padding: 70px 15px 0;
     }
-    #graditude_page .graditude_page_info h1{
+    #graditude_page .graditude_page_info h1,
+    #graditude_detail_page .graditude_page_info h1
+    {
         font-size: 32px;
     }
-    #graditude_page .graditude_page_info {
+    #graditude_page .graditude_page_info,
+    #graditude_detail_page .graditude_page_info
+    {
         width: 100%;
     }
     #graditude_page .help-toggle{
@@ -3250,6 +3376,18 @@ span.news_date {
     #graditude_page .graditude_list .card-img{
         width: 100%;
         height: auto;
+    }
+    #graditude_detail_page .slider-nav{
+        display: none;
+    }
+    #graditude_detail_page .slider-for > div{
+        display: none;
+    }
+    #graditude_detail_page .slider-for .slide.first{
+        display: block;
+    }
+    #graditude_detail_page .slider-for img {
+        width: 100%;
     }
 
 

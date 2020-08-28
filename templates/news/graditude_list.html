@@ -36,12 +36,12 @@
 
             <div id="we_grad_id" class="already_help_children">
                 <div class="thanks"><p>Огромное спасибо всем, кто помог и помогает нам, желаем всем крепкого здоровья!</p></div>
-                {% for item in we_graditude %}
+                {% for grad in we_graditude %}
                 <div class="card_wrapper">
-                    <a href="{{ item.get_absolute_url }}">
-                        <div class="card-img"><img src="{{ item.photo.url }}" alt="Благодарим {{ item.title }}"></div>
+                    <a href="{{ grad.get_absolute_url }}">
+                        <div class="card-img"><img src="{{ grad.photo.url }}" alt="Благодарим {{ grad.title }}"></div>
                         <div class="card-info">
-                            <h4>{{ item.title }}</h4>
+                            <h4>{{ grad.title }}</h4>
                         </div>
                     </a>
                 </div>

@@ -1,15 +1,85 @@
 {% extends 'base.html' %}
-
-{% block title %}Благодарности{% endblock title %}
+{% load static %}
+{% block title %}Благодарность {{ graditude.title }}{% endblock title %}
 
 {% block description %}Наш фонд благодарит всех откликнувшихся за посильную помощь деткам{% endblock description %}
 
 {% block keywords %}благотворительный фонд, благодарности{% endblock keywords %}
 
-{% block page_id %}graditude_page{% endblock page_id %}
+{% block page_id %}graditude_detail_page{% endblock page_id %}
 
 {% block content %}
-
+    <section class="graditude_info wrapper">
+        <div class="graditude_page_info">
+            <h1>Мы благодарим</h1>
+        </div>
+    </section>
+    <section class="graditude wrapper">
+        <div class="graditude_list">
+            <div class="slider-for">
+                <div class="slide first"><h2>{{ graditude.title }}</h2><img src="{{ graditude.photo.url }}" alt="благодарность {{ graditude.title }}"></div>
+                {% for grad in more_grads %}
+                    <div class="slide"><h2>{{ grad.title }}</h2><img src="{{ grad.photo.url }}" alt="благодарность {{ grad.title }}"></div>
+                {% endfor %}
+            </div>
+            <div class="slider-nav">
+                <div class="slide"><h2>{{ graditude.title }}</h2><img src="{{ graditude.photo.url }}" alt="благодарность {{ graditude.title }}"></div>
+                {% for grad in more_grads %}
+                    <div class="slide"><h2>{{ grad.title }}</h2><img src="{{ grad.photo.url }}" alt="благодарность {{ grad.title }}"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 {% endblock content %}
 
-{% block scripts %} {% endblock scripts %}
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.3.1.min.js"
+            integrity="sha256-APllMc0V4lf/Rb5Cz4idWUCYlBDG3b0EcN1Ushd3hpE="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'slick/slick.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.slider-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                asNavFor: '.slider-nav',
+                autoplay: false,
+                responsive: [
+                {
+                    breakpoint: 480,
+                    settings: "unslick"
+                }
+                ]
+            });
+            $('.slider-nav').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                asNavFor: '.slider-for',
+                dots: false,
+                centerMode: true,
+                focusOnSelect: true,
+                vertical: true,
+                responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        vertical: false,
+
+                  }
+                },
+                {
+                    breakpoint: 480,
+                    settings: "unslick"
+                }
+                ]
+            });
+        });
+    </script>
+{% endblock scripts %}
