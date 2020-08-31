@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Отчеты фонда{% endblock title %}
+
+{% block description %}Наш фонд благодарит всех откликнувшихся за посильную помощь деткам{% endblock description %}
+
+{% block keywords %}благотворительный фонд, благодарности, отчеты{% endblock keywords %}
+
+{% block page_id %}otchet_page{% endblock page_id %}
+
+{% block content %}
+    <section class="otchet wrapper">
+        <div class="otchet_wrapper">
+            <div class="otchet_head">
+                <div class="news_title">
+                    <h1>Отчеты</h1>
+                </div>
+                <div class="news_year">
+                    <input type="checkbox" id="otchet_list_toggle" hidden>
+                    <div class="news_toggle"><label for="otchet_list_toggle" onclick>2020 год</label></div>
+                    <div class="years_container">
+                        {% for year in years %}
+                            <div class="year"><label>{{ year }}</label></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="list_files">
+                {% if docs %}
+                    {% for doc in docs %}
+                        <div class="file">
+                            <a href="{{doc.file.url}}" download>
+                                <div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon">
+                                    <span>{{ doc.file_name }}</span>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="news-more"><a href="{% url 'site_custom:about_page' %}">Официальные документы</a></div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %} {% endblock scripts %}

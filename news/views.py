@@ -25,16 +25,22 @@ class PostDetail(DetailView):
 	"""Детальное описание новости"""
 	model = Post
 	slug_field = 'url'
-	extra_queryset = Post.objects.all()[:5]
-	extra_context = {'last_posts': extra_queryset}
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['last_posts'] = Post.objects.filter(draft=False).exclude(url__exact=self.object.url)[:5]
+		return context
 
 
 class GraditudesView(ListView):
 	"""Список благодарностей"""
 	model = Graditude
 	queryset = Graditude.published.filter(status='us')
-	extra_queryset = Graditude.published.filter(status__exact='we')
-	extra_context = {'we_graditude': extra_queryset}
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['we_graditude'] = Graditude.published.filter(status__exact='we')
+		return context
 
 
 class GraditudeDetail(DetailView):

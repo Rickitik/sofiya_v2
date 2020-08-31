@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Благотворительная программа «Здоровье»{% endblock title %}
+
+{% block description %}{% endblock description %}
+
+{% block keywords %}благотворительный фонд, новости, события, помощь деткам{% endblock keywords %}
+
+{% block page_id %}program_page{% endblock page_id %}
+
+{% block content %}
+    <section class="intro wrapper">
+        <div class="intro-img1">
+            <div class="intro-text">
+                <h1 class="intro-text1">Благотворительная программа «Здоровье»</h1>
+            </div>
+        </div>
+    </section>
+    <section class="about_info wrapper">
+        <div class="information">
+            <div class="common_info">
+                <h3>Общие сведения</h3>
+                <p class="text_info">Целью настоящей программы является комплексное решение проблем, направленное на улучшение качества жизни и здоровья, а также на реабилитацию граждан РФ, являющихся потенциальными Благополучателями программы.</p>
+                <p class="text_info">Дата начала реализации программы — 15 января 2012 г.</p>
+                <p class="text_info">Дата окончания реализации программы Фонда — бессрочно.</p>
+            </div>
+            <div class="all_children-button"><a href="">Подать заявку</a></div>
+        </div>
+        <div class="files">
+            <h3>Документы</h3>
+            <div class="list_files">
+                {% if docs %}
+                    {% for doc in docs %}
+                        <div class="file">
+                            <a href="{{ doc.file.url }}" download><div>
+                                <img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon">
+                                <span>{{ doc.file_name }}</span></div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="gallery">
+            <div class="slider-wrapper">
+                <div class="info-heading">
+                    <h2>Галлерея</h2>
+                    <div class="slider-controls">
+                        <span class="slider-prev-3"></span>
+                        <span class="slider-next-3"></span>
+                    </div>
+                </div>
+                <div class="slider-body">
+                    <div class="slider-thumbs-1">
+                        <!-- Элемент слайдера-->
+                        {% if slides %}
+                            {% for slide in slides %}
+                                <div class="slick-slide-gal">
+                                    <a class="gallery-slide" href="#">
+                                        <div class="gal-slide-img">
+                                            <img src="{{ slide.file.url }}" alt="slide{{ slide.id }}" class="gallery-img">
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.3.1.min.js"
+        integrity="sha256-APllMc0V4lf/Rb5Cz4idWUCYlBDG3b0EcN1Ushd3hpE="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'slick/slick.min.js' %}" ></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.slider-thumbs-1').slick({
+            dots: false,
+            infinite: true,
+            vertical: false,
+            speed: 800,
+            autoplay: false,
+            autoplaySpeed: 10000,
+            arrows: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            prevArrow: $('.slider-prev-3'),
+            nextArrow: $('.slider-next-3'),
+        });
+    });
+</script>
+{% endblock scripts %}

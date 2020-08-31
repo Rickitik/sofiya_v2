@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}{{ child.name }} {{ child.surname }}{% endblock title %}
 
@@ -8,6 +9,9 @@
 {% block keywords %}благотворительный фонд, новости, события, помощь{% endblock keywords %}
 
 {% block page_id %}child_page{% endblock page_id %}
+
+{% block page_class %}{% if child.status == 'already_help' %}helped{% endif %}{% endblock page_class %}
+
 
 {% block content %}
     <section class="child_help wrapper">
@@ -19,16 +23,16 @@
                 <div class="money_progress">
                     {% if child.status == 'need_help' %}
                         <h4>Прогресс</h4>
-                        <p class="money_count">Собрано {{ child.money_collected }} ₽</p>
+                        <p class="money_count">Собрано {{ child.money_collected|intcomma }} ₽</p>
                         <div class="progress">
                             <progress max="{{ child.money_need }}" value="{{ child.money_collected }}"></progress>
                         </div>
-                        <p class="money_count">Осталось собрать {{ child.left_amount_money }} ₽</p>
+                        <p class="money_count">Осталось собрать {{ child.left_amount_money|intcomma }} ₽</p>
                         <div class="all_children-button"><a href="#">Помочь</a></div>
                     {% else %}
                         <h4></h4>
                         <p class="thanks_for_help">Средства собраны. {{ child.problem_solution }} Всем огромное спасибо за помощь!</p>
-                        <p class="money_count">Собрано {{ child.money_collected }} ₽</p>
+                        <p class="money_count">Собрано {{ child.money_collected|intcomma }} ₽</p>
                     {% endif %}
                 </div>
             </div>
@@ -70,9 +74,9 @@
                             </div>
                             <div class="slide_info">
                                 <h3 class="child-name">{{ item.name }} {{ item.surname }}</h3>
-                                <p class="child-description">{{ item.problem }}</p>
+                                <p class="child-description">{{ item.problem|truncatechars:53 }}</p>
                                 <div><progress max="{{ item.money_need }}" value="{{ item.money_collected }}"></progress></div>
-                                <span class="child-left-to-collect">Осталось собрать {{ item.left_amount_money }} ₽</span>
+                                <span class="child-left-to-collect">Осталось собрать {{ item.left_amount_money|intcomma }} ₽</span>
                                 <div class="child-more"><a href="{{ item.get_absolute_url }}">Подробнее</a></div>
                             </div>
                         </div>

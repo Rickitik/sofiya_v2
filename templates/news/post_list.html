@@ -26,13 +26,15 @@
                 </div>
             </div>
             <div class="news_list">
-                {% for post in post_list %}
-                <div class="news_item">
-                    <div class="news_img"><img src="{{post.photo.url}}" alt=""></div>
-                    <div class="news_item_title"><a href="{{post.get_absolute_url}}">{{ post.title }}</a></div>
-                    <div class="news_date"><span>{{ post.publish|date }}</span></div>
-                </div>
-                {% endfor %}
+                {% if post_list %}
+                    {% for post in post_list %}
+                    <div class="news_item">
+                        <div class="news_img"><img src="{{post.photo.url}}" alt=""></div>
+                        <div class="news_item_title"><a href="{{post.get_absolute_url}}">{{ post.title }}</a></div>
+                        <div class="news_date"><span>{{ post.publish|date }}</span></div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
             </div>
             <div class="news-more"><a href="#">Загрузить еще</a></div>
         </div>

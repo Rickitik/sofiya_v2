@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}О фонде{% endblock title %}
+
+{% block description %}{% endblock description %}
+
+{% block keywords %}благотворительный фонд, новости, события, помощь деткам{% endblock keywords %}
+
+{% block page_id %}about_page{% endblock page_id %}
+
+{% block content %}
+    <section class="intro wrapper">
+        <div class="intro-img1">
+            <div class="intro-text">
+                <h1 class="intro-text1">О фонде</h1>
+                <p class="intro-text2">“Людям рядом с нами больше всего нужна просто доброта.” <br> <br>А. Ф. Романова</p>
+            </div>
+        </div>
+    </section>
+    <section class="about_info wrapper">
+        <div class="history">
+            <h3>Подробнее</h3>
+            <p>Благотворительный фонд поддержки детей имени императрицы Александры Федоровны Романовой был создан 22 марта 2011 года.</p>
+            <p>Наша цель — своевременное оказание необходимой медицинской помощи детям и внесение посильного вклада в их светлое будущее. Фонд собирает средства на лечение и привлекает спонсоров для оказания помощи нуждающимся, а также поддерживает проекты, способствующие физическому и духовному развитию детей.</p>
+            <h4>Фонд предоставляет благотворительную помощь на следующие цели:</h4>
+            <ul>
+                <li>поддержку детей, в том числе связанную с финансовой, материальной и организационной поддержкой и защитой прав и законных интересов детей;</li>
+                <li>содействие деятельности в сфере профилактики и охраны здоровья детей, а также пропаганды здорового образа жизни;</li>
+                <li>возрождение традиций благотворительности в России;</li>
+                <li>содействие укреплению престижа и роли семьи в обществе, повышению духовно-нравственного уровня семьи и детей на основе общечеловеческих ценностей;</li>
+                <li>содействие деятельности в сфере физической культуры и массового спорта среди детей, а также движения охраны окружающей природной среды;</li>
+                <li>содействие деятельности в сфере образования, науки, культуры, искусства, просвещения, духовного развития личности ребенка;</li>
+                <li>содействие укреплению мира, дружбы и согласия между народами, предотвращению социальных, национальных, религиозных конфликтов;</li>
+                <li>оказание материальной и иной помощи оставшимся без попечения родителей несовершеннолетним;</li>
+                <li>содействие сокращению количества случаев искусственного прерывания беременности.</li>
+            </ul>
+            <h3>Александра Федоровна Романова</h3>
+            <div class="photo">
+                <img src="{% static 'img/about_photo.png' %}" alt="фото">
+                <span>1894—1918</span>
+            </div>
+            <p>Алекса́ндра Фёдоровна (Фео́доровна, урождённая принцесса Викто́рия Али́са Еле́на Луи́за Беатри́са Ге́ссен-Дармшта́дтская — российская императрица, супруга Николая II (c 1894 года). Четвёртая дочь великого герцога Гессенского и Рейнского Людвига IV и герцогини Алисы, дочери британской королевы Виктории. </p>
+            <p>Подвижница благотворительной помощи. По её инициативе были созданы работные дома, школы для сиделок, школа народного искусства, ортопедические клиники для больных детей. Александра Федоровна выделяла личные средства на пожертвования, учреждение и работу множества благотворительных организаций.</p>
+            <div class="more"><a href="#">Подробнее</a></div>
+        </div>
+        <div class="files">
+            <h3>Официальные документы</h3>
+            {% if docs %}
+                <div class="list_files">
+                {% for doc in docs %}
+                    <div class="file"><a href="{{ doc.file.url }}" download><div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon"><span>{{ doc.file_name }}</span></div></a></div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="gallery">
+            <div class="slider-wrapper">
+                <div class="info-heading">
+                    <h2>Галлерея</h2>
+                    <div class="slider-controls">
+                        <span class="slider-prev-3"></span>
+                        <span class="slider-next-3"></span>
+                    </div>
+                </div>
+                <div class="slider-body">
+                    <div class="slider-thumbs-1">
+                        <!-- Элемент слайдера-->
+                        {% if slides %}
+                            {% for slide in slides %}
+                                <div class="slick-slide-gal">
+                                    <a class="gallery-slide" href="#">
+                                        <div class="gal-slide-img">
+                                            <img src="{{ slide.file.url }}" alt="slide{{ slide.id }}" class="gallery-img">
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="join-us wrapper">
+        <div class="banner">
+            <div class="join-info">
+                <h3>Хотите помогать детям?</h3>
+                <p>Тогда участвуйте в нашей волонтерской программе!</p>
+                <div class="but-join"><a href="#">Стать волонтером</a></div>
+            </div>
+        </div>
+        <div class="join-adv">
+            <div class="bla-bla">
+                <h3 class="desc">Присоединяйтесь к нам</h3>
+                <h3 class="mob">Присоединяйтесь</h3>
+            </div>
+            <div class="join-social">
+                <a class="social_img" href="#"><img src="{% static 'img/instagram.svg' %}" alt="instagram"></a>
+                <a class="social_img" href="#"><img src="{% static 'img/vk-social-network-logo.svg' %}" alt="vk-social"></a>
+                <a class="social_img" href="#"><img src="{% static 'img/facebook.svg' %}" alt="facebook"></a>
+                <a class="social_img" href="#"><img src="{% static 'img/youtube.svg' %}" alt="youtube"></a>
+                <a class="social_img" href="#"><img src="{% static 'img/telegram.svg' %}" alt="telegram"></a>
+            </div>
+            <div class="teg"><a href="#">#творимдобровместе</a></div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.3.1.min.js"
+        integrity="sha256-APllMc0V4lf/Rb5Cz4idWUCYlBDG3b0EcN1Ushd3hpE="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'slick/slick.min.js' %}" ></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.slider-thumbs-1').slick({
+            dots: false,
+            infinite: true,
+            vertical: false,
+            speed: 800,
+            autoplay: false,
+            autoplaySpeed: 10000,
+            arrows: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            prevArrow: $('.slider-prev-3'),
+            nextArrow: $('.slider-next-3'),
+        });
+    });
+</script>
+{% endblock scripts %}

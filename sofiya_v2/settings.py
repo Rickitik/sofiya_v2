@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'ckeditor',
     'ckeditor_uploader',
     'news.apps.NewsConfig',
-    'child.apps.ChildConfig'
+    'child.apps.ChildConfig',
+    'site_custom.apps.SiteCustomConfig'
 ]
 
 MIDDLEWARE = [
@@ -55,6 +57,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'sofiya_v2.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -67,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'site_custom.context_proccessors.load_settings',
             ],
         },
     },

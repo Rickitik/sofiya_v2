@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% debug %}
+{% load humanize %}
 
 {% block title %}Вместе мы сможем спасти множество жизней!{% endblock title %}
 
@@ -27,9 +29,9 @@
                     <div class="card-img"><img src="{{ child.photo.url }}" alt="фото {{ child.name_rod }}"></div>
                     <div class="card-info">
                         <h4>{{ child.name }} {{ child.surname }}</h4>
-                        <p>{{ child.problem }}</p>
+                        <p>{{ child.problem|truncatechars:53 }}</p>
                         <div><progress max="{{ child.money_need }}" value="{{ child.money_collected }}"></progress></div>
-                        <span class="card-left-to-collect">Осталось собрать {{ child.left_amount_money }} ₽</span>
+                        <span class="card-left-to-collect">Осталось собрать {{ child.left_amount_money|intcomma }} ₽</span>
                         <div class="child-more"><a href="{{ child.get_absolute_url }}">Подробнее</a></div>
                     </div>
                 </div>
@@ -44,7 +46,7 @@
                     <div class="card-info">
                         <h4>{{ child.name }} {{ child.surname }}</h4>
                         <p>{{ child.problem }}</p>
-                        <div class="total"><span class="card-collected">Собрано {{ child.money_collected }} ₽</span></div>
+                        <div class="total"><span class="card-collected">Собрано {{ child.money_collected|intcomma }} ₽</span></div>
                         <div class="child-more"><a href="{{ child.get_absolute_url }}">Подробнее</a></div>
                     </div>
                 </div>

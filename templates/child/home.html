@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block title %}{{ site_settings.title }}{% endblock title %}
+
+{% block description %}{% endblock description %}
+
+{% block keywords %}благотворительный фонд, новости, события, помощь деткам{% endblock keywords %}
+
+{% block page_id %}{% endblock page_id %}
+
+{% block content %}
+    <section class="intro wrapper">
+        <div class="intro-img1">
+            <div class="page-video">
+                <video class="video" loop="loop" preload="auto" autoplay="" muted="" poster="{% static 'img/screen1.jpg' %}">
+                    <source src="{% static 'img/video1.mp4' %}" type="video/mp4" />
+                    <source src="{% static 'img/video1.webm' %}" type="video/webm" />
+                </video>
+            </div>
+
+            <div class="content">
+                <h1 class="intro-text1">{{ site_settings.title }}</h1>
+                <p class="intro-text2">{{ site_settings.title_sub_text }}</p>
+            </div>
+        </div>
+    </section>
+    <section class="stats wrapper">
+        <div class="stats-text1">
+            <h2>О нас</h2>
+            <div class="quote">
+                <div class="quote-foto"><img class="img-quote-foto" src="img/quote-foto.png" alt=""></div>
+                <div class="quote-text">
+                    <p class="quote-text1">“Дети – это апостолы Бога, которых день за днём он посылает нам, чтобы говорить о любви, мире, надежде!”</p>
+                    <p class="quote-text2">А. Ф. Романова</p>
+                </div>
+            </div>
+        </div>
+        <div class="stats-text2">
+            <p class="quote-text3">Наша цель — своевременное оказание необходимой медицинской помощи детям и внесение посильного вклада в их светлое будущее. Фонд собирает средства на лечение и привлекает спонсоров для оказания помощи нуждающимся, а также поддерживает проекты, способствующие физическому и духовному развитию детей.</p>
+            <div class="more"><a href="{% url 'site_custom:about_page' %}">Подробнее</a></div>
+        </div>
+        <div class="stats-num">
+            <div class="num1">
+                <span class="num-text1">{{ site_settings.years_together }} лет</span>
+                <span class="num-text2">благотворительности</span>
+            </div>
+            <div class="num2">
+                <span class="num-text1">{{ site_settings.children_count }} детей</span>
+                <span class="num-text2">получили помощь</span>
+            </div>
+            <div class="num3">
+                    <span class="num-text1">{{ site_settings.millions_count }} млн.</span>
+                    <span class="num-text2">рублей собрано</span>
+            </div>
+        </div>
+    </section>
+    <section class="info wrapper">
+        <div class="need-help-info-block">
+            <div class="slider-wrapper">
+                <div class="info-heading">
+                    <h2>Сбор средств</h2>
+                    <div class="already"><a href="#">Уже помогли</a></div>
+                    <div class="slider-controls">
+                        <span class="slider-prev"></span>
+                        <span class="slider-next"></span>
+                    </div>
+                </div>
+
+                <div class="slider-body">
+                    <div class="slider-thumbs-1">
+                        <!-- Элемент слайдера-->
+                        {% for child in need_help_children %}
+                            <div class="slick-slide">
+                                <div class="slide-img">
+                                    <img src="{{ child.photo.url }}" alt="фото {{ child.name_rod }}" class="child-img">
+                                </div>
+                                <div class="slide_info">
+                                    <h3 class="child-name">{{ child.name }} {{ child.surname }}</h3>
+                                    <p class="child-description">{{ child.problem|truncatechars:53 }}</p>
+                                    <div><progress max="{{ child.money_need }}" value="{{ child.money_collected }}"></progress></div>
+                                    <span class="child-left-to-collect">Осталось собрать {{ child.left_amount_money|intcomma }} ₽</span>
+                                    <div class="child-more"><a href="{{ child.get_absolute_url }}">Подробнее</a></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="already-helped-info-block">
+            <div class="slider-wrapper">
+                <div class="info-heading">
+                    <h2>Уже помогли</h2>
+                    <div class="slider-controls">
+                        <span class="slider-prev-2"></span>
+                        <span class="slider-next-2"></span>
+                    </div>
+                </div>
+                <div class="slider-body">
+                    <div class="slider-thumbs-2">
+                        <!-- Элемент слайдера-->
+                        {% for child in already_helped_children %}
+                        <div class="slick-slide">
+                            <div class="slide-img">
+                                <img src="{{ child.photo.url }}" alt="фото {{ child.name_rod }}" class="child-img">
+                            </div>
+                            <div class="slide_info">
+                                <h3 class="child-name">{{ child.name }} {{ child.surname }}</h3>
+                                <p class="child-description">{{ child.problem|truncatechars:53 }}</p>
+                                <p class="money_count">Собрано {{ child.money_collected|intcomma }} ₽</p>
+                                <div class="child-more"><a href="{{ child.get_absolute_url }}">Подробнее</a></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="all_children-button"><a href="{% url 'child:child_list' %}">Все дети</a></div>
+    </section>
+    <section class="news wrapper">
+        <div class="news-info-block">
+           <div class="slider-wrapper">
+                <div class="info-heading">
+                    <h2>Новости фонда</h2>
+                    <div class="slider-controls">
+                        <span class="slider-prev-3"></span>
+                        <span class="slider-next-3"></span>
+                    </div>
+                </div>
+
+                <div class="slider-body">
+                    <div class="slider-thumbs-3">
+                        <!-- Элемент слайдера-->
+                        <div class="slick-slide">
+                            <a class="news-slide" href="#">
+                                <div class="slide-img">
+                                    <img src="img/vanilla-bear-films-JEwNQerg3Hs-unsplash.png" alt="news1" class="news-img">
+                                </div>
+                                <div class="slide_info">
+                                    <h3 class="news-header">Сама главная победа — это победа над самим собой.</h3>
+                                    <span class="news_date">02/08/2020</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="slick-slide">
+                            <a class="news-slide" href="#">
+                                <div class="slide-img">
+                                    <img src="img/david-ballew-yRRTd31I6VM-unsplash.png" alt="news1" class="news-img">
+                                </div>
+                                <div class="slide_info">
+                                    <h3 class="news-header">Сама главная победа — это победа над самим собой.</h3>
+                                    <span class="news_date">02/08/2020</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="slick-slide">
+                            <a class="news-slide" href="#">
+                                <div class="slide-img">
+                                    <img src="img/van-tay-media-WMDKC8moG9w-unsplash.png" alt="news1" class="news-img">
+                                </div>
+                                <div class="slide_info">
+                                    <h3 class="news-header">Сама главная победа — это победа над самим собой.</h3>
+                                    <span class="news_date">02/08/2020</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="slick-slide">
+                            <a class="news-slide" href="#">
+                                <div class="slide-img">
+                                    <img src="img/vanilla-bear-films-JEwNQerg3Hs-unsplash.png" alt="news1" class="news-img">
+                                </div>
+                                <div class="slide_info">
+                                    <h3 class="news-header">Сама главная победа — это победа над самим собой.</h3>
+                                    <span class="news_date">02/08/2020</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="all_news-button"><a href="">Все новости</a></div>
+    </section>
+    <section class="join-us wrapper">
+        <div class="banner">
+            <div class="join-info">
+                <h3>Хотите помогать детям?</h3>
+                <p>Тогда участвуйте в нашей волонтерской программе!</p>
+                <div class="but-join"><a href="#">Стать волонтером</a></div>
+            </div>
+        </div>
+        <div class="join-adv">
+            <div class="bla-bla">
+                <h3 class="desc">Присоединяйтесь к нам</h3>
+                <h3 class="mob">Присоединяйтесь</h3>
+            </div>
+            <div class="join-social">
+                <a class="social_img" href="#"><img src="img/instagram.svg" alt=""></a>
+                <a class="social_img" href="#"><img src="img/vk-social-network-logo.svg" alt=""></a>
+                <a class="social_img" href="#"><img src="img/facebook.svg" alt=""></a>
+                <a class="social_img" href="#"><img src="img/youtube.svg" alt=""></a>
+                <a class="social_img" href="#"><img src="img/telegram.svg" alt=""></a>
+            </div>
+            <div class="teg"><a href="#">#творимдобровместе</a></div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.3.1.min.js"
+        integrity="sha256-APllMc0V4lf/Rb5Cz4idWUCYlBDG3b0EcN1Ushd3hpE="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'slick/slick.min.js' %}" ></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.slider-thumbs-1').slick({
+            dots: false,
+            infinite: true,
+            vertical: false,
+            speed: 800,
+            autoplay: true,
+            autoplaySpeed: 10000,
+            arrows: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            prevArrow: $('.slider-prev'),
+            nextArrow: $('.slider-next'),
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 2,
+                        responsive: false,
+
+                  }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        responsive: false,
+                  }
+                },
+                {
+                    breakpoint: 480,
+                    settings: "unslick"
+                }
+              ]
+        });
+        $('.slider-thumbs-2').slick({
+            dots: false,
+            infinite: true,
+            vertical: false,
+            speed: 800,
+            autoplay: true,
+            autoplaySpeed: 10000,
+            arrows: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            prevArrow: $('.slider-prev-2'),
+            nextArrow: $('.slider-next-2'),
+            responsive: [
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 2
+                  }
+                },
+                {
+                  breakpoint: 600,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: "unslick"
+                }
+              ]
+        });
+        $('.slider-thumbs-3').slick({
+            dots: false,
+            infinite: true,
+            vertical: false,
+            speed: 800,
+            autoplay: false,
+            autoplaySpeed: 10000,
+            arrows: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            prevArrow: $('.slider-prev-3'),
+            nextArrow: $('.slider-next-3'),
+            responsive: [
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                  }
+                },
+                {
+                  breakpoint: 600,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: "unslick"
+                }
+              ]
+        });
+    });
+</script>
+{% endblock scripts %}

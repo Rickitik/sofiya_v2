@@ -15,7 +15,7 @@
 </head>
 <body>
     {% include 'include/header.html' %}
-    <main id="{% block page_id %} {% endblock page_id %}">
+    <main id="{% block page_id %} {% endblock page_id %}" class="{% block page_class %}{% endblock page_class %}">
         {% block content %}
 
         {% endblock content %}

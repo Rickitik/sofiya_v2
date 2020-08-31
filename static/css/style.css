@@ -123,7 +123,6 @@ main {
 }
 
 .intro-img1{
-    /*background: url(../img/screen1.png) center no-repeat #dddddd;*/
     width: 100%;
     height: 722px;
     text-align: left;
@@ -370,6 +369,15 @@ main {
     font-size: 12px;
     letter-spacing: 0;
     text-align: left;
+}
+.already-helped-info-block .money_count{
+    color: #1E88E5;
+    font-size: 16px;
+}
+.already-helped-info-block .money_count:before{
+    content: '\2713';
+    font-size: 16px;
+    padding-right: 7px;
 }
 
 .child-more{
@@ -811,6 +819,21 @@ span.news_date {
     text-align: left;
     z-index: 0;
 }
+#volunteer_page .intro-img1::after{
+    content:'';
+    background: #000000 0 0 no-repeat padding-box;
+    position: absolute;
+    opacity: 0.4;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+#volunteer_page .intro-text {
+    padding-top: 70px;
+    padding-left: 85px;
+}
 #volunteer_page .intro-text2 {
     display: none;
 }
@@ -919,6 +942,17 @@ span.news_date {
     width: 100%;
     height: 400px;
     z-index: 0;
+}
+#about_page .intro-img1::after{
+    content:'';
+    background: #000000 0 0 no-repeat padding-box;
+    position: absolute;
+    opacity: 0.4;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 #about_page .intro-text {
     margin-top: 100px;
@@ -1053,6 +1087,17 @@ span.news_date {
 	height: 400px;
 	text-align: left;
 	z-index: 0;
+}
+#team_page .intro-img1::after{
+    content:'';
+    background: #000000 0 0 no-repeat padding-box;
+    position: absolute;
+    opacity: 0.4;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 #team_page .intro-text {
 	margin-top: 100px;
@@ -1517,6 +1562,17 @@ span.news_date {
     height: 400px;
     text-align: left;
     z-index: 0;
+}
+#program_page .intro-img1::after{
+    content:'';
+    background: #000000 0 0 no-repeat padding-box;
+    position: absolute;
+    opacity: 0.4;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 #program_page .intro-text1 {
     font-size: 48px;
@@ -2231,6 +2287,10 @@ span.news_date {
         background: url(../img/volunteer_back.png) 0 30% no-repeat #000;
         height: 432px;
     }
+    #volunteer_page .intro-text {
+        padding-top: 100px;
+        padding-left: 39px;
+    }
     #volunteer_page .questions {
         width: auto;
         padding-left: 39px;
@@ -2921,6 +2981,10 @@ span.news_date {
         background: url(../img/volunteer_back.png) 50% 30% no-repeat #000;
         height: 420px;
         background-size: cover;
+    }
+    #volunteer_page .intro-text {
+        padding-top: 70px;
+        padding-left: 15px;
     }
     #volunteer_page .intro-text1 {
         font-size: 32px;

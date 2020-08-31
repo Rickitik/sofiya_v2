@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Контакты фонда{% endblock title %}
+
+{% block description %}Наш фонд благодарит всех откликнувшихся за посильную помощь деткам{% endblock description %}
+
+{% block keywords %}благотворительный фонд, благодарности, отчеты{% endblock keywords %}
+
+{% block page_id %}contacts_page{% endblock page_id %}
+
+{% block content %}
+    <section class="contacts wrapper">
+        <div class="contacts_information">
+            <div class="contact_info">
+                <h1>Контакты</h1>
+                <p>{{ address }}</p>
+            </div>
+            <div class="map_wrapper">
+                <div class="map"><img src="{% static 'img/map.png' %}" alt="map"></div>
+{#                TODO: map file#}
+                <div class="docs">
+                    {% if schema %}
+                    <div class="schema"><a href="{{ schema.url }}" download>
+                        <div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon">
+                            <span>Схема проезда</span>
+                        </div></a>
+                    </div>
+                    {% endif %}
+                    <div class="reports"><a href="{% url 'site_custom:about_page' %}" target="_blank">Официальные документы</a></div>
+                    <div class="reports"><a href="{% url 'site_custom:report_page' %}" target="_blank">Отчеты</a></div>
+                </div>
+                <div class="contacts_anketa">
+                    <div class="mail_block block">
+                        <h3>Если нужна помощь</h3>
+                        <a href="mailto:{{ mail }}">{{ mail }}</a>
+                    </div>
+                    <div class="phone_block block">
+                        <h3>Сотрудничество</h3>
+                        <p>{{ phone }}</p>
+                    </div>
+                    <div class="anket_block block">
+                        <h3>Для волонтеров</h3>
+                        <p>Пожалуйста, заполните <a href="#" download>анкету</a></p>
+{#                        TODO: link #}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rekvizit">
+            <h3>Реквизиты</h3>
+            <p>{{ name }}</p><p>{{ address }} <br>
+            ИНН: {{ inn }} <br>
+            КПП: {{ kpp }} <br>
+            Расчетный счет: {{ ras_schet }} <br>
+            {{ bank }} <br>
+            к/с: {{ kor_schet }} <br>
+            БИК: {{ bik }}</p>
+            {% if file_rekv %}
+            <a href="{{ file_rekv.url }}" download><div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon"><span>Реквизиты</span></div></a>
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %} {% endblock scripts %}

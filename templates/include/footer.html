@@ -3,24 +3,24 @@
 <footer>
     <div class="footer wrapper">
         <div class="footer-info">
-            <div class="footer-logo"><a href="#"><img src="{% static 'img/logo.png '%}" alt="logo"></a></div>
+            <div class="footer-logo"><a href="{% url 'child:home_page' %}"><img src="{% static 'img/logo.png '%}" alt="logo"></a></div>
             <div class="contacts">
-                <span class="phone">+7 (495) 981-08-00</span>
-                <span class="email"><a href="mailto:fondpochta@mail.ru">fondpochta@mail.ru</a></span>
+                <span class="phone">{{ site_settings.phone_number }}</span>
+                <span class="email"><a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a></span>
             </div>
             <div class="address">
-                <span>105082, Москва, <br>ул. Фридриха Энгельса, 75, стр. 3</span>
+                <span>{{ site_settings.address|safe }}</span>
             </div>
         </div>
         <div class="footer-menu">
-            <a href="#">О фонде</a>
+            <a href="{% url 'site_custom:about_page' %}">О фонде</a>
             <a href="#">Команда</a>
             <a href="{% url 'child:child_list' %}">Дети</a>
-            <a href="#">Программы</a>
+            <a href="{% url 'site_custom:program_page' %}">Программы</a>
             <a href="{% url 'news:post_list' %}">Новости</a>
-            <a href="#">Отчеты</a>
+            <a href="{% url 'site_custom:report_page' %}">Отчеты</a>
             <a href="{% url 'news:grad_list' %}">Благодарности</a>
-            <a href="#">Контакты</a>
+            <a href="{% url 'site_custom:contact_page' %}">Контакты</a>
         </div>
         <div class="footer-social">
             <a class="social_img" href="#"><img src="{% static 'img/instagram.svg'%}" alt="insta_ico"></a>
@@ -36,7 +36,11 @@
                 <div class="mini-logo"><img src="{% static 'img/Image1.png'%}" alt="Альтернатива"></div>
             </div>
             <div class="offert">
-                <p>Делая пожертвование, вы принимаете условия нашей <a href="#">Оферты</a></p>
+                <p>Делая пожертвование, вы принимаете условия нашей <a href="
+                    {% if site_settings.file_oferta %}
+                    {{ site_settings.file_oferta.url }}
+                    {% else %}#
+                    {% endif %}" target="_blank">Оферты</a></p>
             </div>
         </div>
     </div>
