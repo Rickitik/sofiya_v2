@@ -3335,6 +3335,9 @@ span.news_date {
         display: block;
         top: 0;
     }
+    #main_page .slider-controls {
+        display: none !important;
+    }
     #news_page .news_wrapper{
         padding: 70px 15px 70px 15px;
     }

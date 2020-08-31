@@ -9,7 +9,7 @@
 
 {% block keywords %}благотворительный фонд, новости, события, помощь деткам{% endblock keywords %}
 
-{% block page_id %}{% endblock page_id %}
+{% block page_id %}main_page{% endblock page_id %}
 
 {% block content %}
     <section class="intro wrapper">
@@ -31,7 +31,7 @@
         <div class="stats-text1">
             <h2>О нас</h2>
             <div class="quote">
-                <div class="quote-foto"><img class="img-quote-foto" src="img/quote-foto.png" alt=""></div>
+                <div class="quote-foto"><img class="img-quote-foto" src="{% static 'img/quote-foto.png' %}" alt=""></div>
                 <div class="quote-text">
                     <p class="quote-text1">“Дети – это апостолы Бога, которых день за днём он посылает нам, чтобы говорить о любви, мире, надежде!”</p>
                     <p class="quote-text2">А. Ф. Романова</p>
@@ -63,6 +63,7 @@
                 <div class="info-heading">
                     <h2>Сбор средств</h2>
                     <div class="already"><a href="#">Уже помогли</a></div>
+{#                    TODO: сделать переключатель в мобильной версии#}
                     <div class="slider-controls">
                         <span class="slider-prev"></span>
                         <span class="slider-next"></span>
@@ -199,11 +200,11 @@
                 <h3 class="mob">Присоединяйтесь</h3>
             </div>
             <div class="join-social">
-                <a class="social_img" href="#"><img src="img/instagram.svg" alt=""></a>
-                <a class="social_img" href="#"><img src="img/vk-social-network-logo.svg" alt=""></a>
-                <a class="social_img" href="#"><img src="img/facebook.svg" alt=""></a>
-                <a class="social_img" href="#"><img src="img/youtube.svg" alt=""></a>
-                <a class="social_img" href="#"><img src="img/telegram.svg" alt=""></a>
+                <a class="social_img" href="#"><img src="{% static 'img/instagram.svg' %}" alt="instagram"></a>
+                <a class="social_img" href="#"><img src="{% static 'img/vk-social-network-logo.svg' %}" alt="vk-social"></a>
+                <a class="social_img" href="#"><img src="{% static 'img/facebook.svg' %}" alt="facebook"></a>
+                <a class="social_img" href="#"><img src="{% static 'img/youtube.svg' %}" alt="youtube"></a>
+                <a class="social_img" href="#"><img src="{% static 'img/telegram.svg' %}" alt="telegram."></a>
             </div>
             <div class="teg"><a href="#">#творимдобровместе</a></div>
         </div>
