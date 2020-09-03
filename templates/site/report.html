@@ -30,7 +30,7 @@
                 {% if docs %}
                     {% for doc in docs %}
                         <div class="file">
-                            <a href="{{doc.file.url}}" download>
+                            <a href="{{doc.file.url}}" target="_blank">
                                 <div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon">
                                     <span>{{ doc.file_name }}</span>
                                 </div>
@@ -39,6 +39,7 @@
                     {% endfor %}
                 {% endif %}
             </div>
+{#        TODO: добавить отчеты в минюст#}
             <div class="news-more"><a href="{% url 'site_custom:about_page' %}">Официальные документы</a></div>
         </div>
     </section>

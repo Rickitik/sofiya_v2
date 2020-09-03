@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Давайте знакомиться!{% endblock title %}
+
+{% block description %}В нашем мире есть много детей, которым необходима наша помощь. Вместе мы сможем спасти множество жизней!{% endblock description %}
+
+{% block keywords %}благотворительный фонд, необходима помощь, помочь детям{% endblock keywords %}
+
+{% block page_id %}team_page{% endblock page_id %}
+
+{% block content %}
+    <section class="intro wrapper">
+        <div class="intro-img1">
+            <div class="intro-text">
+                <h1 class="intro-text1">Давайте знакомиться!</h1>
+            </div>
+        </div>
+    </section>
+    <section class="team wrapper">
+        <div class="team_wrapper">
+            <h3>Наша команда</h3>
+            <div class="team_list">
+                {% if team_list %}
+                    {% for member in team_list %}
+                        <div class="team_member">
+                            <a href="{{ member.get_absolute_url }}">
+                                <img src="{{ member.photo.url }}" alt="{{ member.fio }}">
+                                <div class="member_info">
+                                    <h4 class="name">{{ member.fio }}</h4>
+                                    <p class="position">{{ member.position }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <section class="join-us wrapper">
+        <div class="join_us_team">
+                <p>Хотите стать частью нашей команды — присылайте свою анкету!</p>
+                <div class="but-join"><a href="{% url 'volunteer:volunteer_page_form' %}">Стать волонтером</a></div>
+        </div>
+    </section>
+{% endblock content %}
+{% block scripts %} {% endblock scripts %}

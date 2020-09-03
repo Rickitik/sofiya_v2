@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Фонд поддержки детей им. А.Ф. Романовой - {{ team.fio }}{% endblock title %}
+
+{% block description %}Хотим познакомить Вас с историей {{ child.name_rod }} {% endblock description %}
+
+{% block keywords %}благотворительный фонд, новости, события, помощь{% endblock keywords %}
+
+{% block page_id %}person_page{% endblock page_id %}
+
+{% block content %}
+    <section class="person wrapper" xmlns="http://www.w3.org/1999/html">
+        <div class="person_information">
+            <div class="person_name">
+                <h1>{{ team.fio }}</h1>
+            </div>
+            <div class="person_position">
+                <h3>{{ team.position }}</h3>
+            </div>
+            <div class="person-img">
+                <img src="{{ team.photo.url }}" alt="{{ team.photo }}">
+            </div>
+            <div class="person_biography">
+                {{ team.history|safe }}
+            </div>
+            {% if team.attached_person_files %}
+            <div class="awards">
+                <h3>Награды</h3>
+                <div class="awards_list">
+                    {% for file in team.attached_person_files.all %}
+                        <a href="{{file.file.url}}" target="_blank">
+                            <div class="diploma"><img src="{{ file.file.url }}" alt="{{ file.file_name }}"></div>
+                        </a>
+                    {% endfor %}
+{#                TODO: Оптимизировать запрос#}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    <section class="other_persons wrapper">
+        <div class="other_person_gal">
+            <div class="slider-wrapper">
+                <div class="info-heading">
+                    <h2>Другие сотрудники</h2>
+                    <div class="slider-controls">
+                        <span class="slider-prev-3"></span>
+                        <span class="slider-next-3"></span>
+                    </div>
+                </div>
+                <div class="slider-body">
+                    <div class="slider-thumbs-1">
+                        <!-- Элемент слайдера-->
+                        {% for person in other_persons %}
+                            <div class="slick-slide-gal">
+                            <a class="gallery-slide" href="{{ person.get_absolute_url }}">
+                                <div class="slide-img">
+                                    <img src="{{ person.photo.url }}" alt="{{ person.fio }}" class="team-img">
+                                </div>
+                                <div class="slide_info">
+                                    <h3 class="team-person-name">{{ person.fio }}</h3>
+                                    <p class="team-person-position">{{ person.position }}</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.3.1.min.js"
+            integrity="sha256-APllMc0V4lf/Rb5Cz4idWUCYlBDG3b0EcN1Ushd3hpE="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'slick/slick.min.js' %}"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('.slider-thumbs-1').slick({
+            dots: false,
+            infinite: true,
+            vertical: false,
+            speed: 800,
+            autoplay: true,
+            autoplaySpeed: 10000,
+            arrows: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            prevArrow: $('.slider-prev-3'),
+            nextArrow: $('.slider-next-3'),
+            responsive: [
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: "unslick"
+                }
+              ]
+        });
+    });
+</script>
+{% endblock scripts %}

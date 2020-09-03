@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
-
+{% load news_tag %}
 
 {% block title %}{{ site_settings.title }}{% endblock title %}
 
@@ -57,6 +57,7 @@
             </div>
         </div>
     </section>
+    {% if need_help_children %}
     <section class="info wrapper">
         <div class="need-help-info-block">
             <div class="slider-wrapper">
@@ -122,6 +123,9 @@
         </div>
         <div class="all_children-button"><a href="{% url 'child:child_list' %}">Все дети</a></div>
     </section>
+    {% endif %}
+    {% get_news 4 as news %}
+    {% if news %}
     <section class="news wrapper">
         <div class="news-info-block">
            <div class="slider-wrapper">
@@ -136,62 +140,32 @@
                 <div class="slider-body">
                     <div class="slider-thumbs-3">
                         <!-- Элемент слайдера-->
-                        <div class="slick-slide">
-                            <a class="news-slide" href="#">
-                                <div class="slide-img">
-                                    <img src="img/vanilla-bear-films-JEwNQerg3Hs-unsplash.png" alt="news1" class="news-img">
-                                </div>
-                                <div class="slide_info">
-                                    <h3 class="news-header">Сама главная победа — это победа над самим собой.</h3>
-                                    <span class="news_date">02/08/2020</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="slick-slide">
-                            <a class="news-slide" href="#">
-                                <div class="slide-img">
-                                    <img src="img/david-ballew-yRRTd31I6VM-unsplash.png" alt="news1" class="news-img">
-                                </div>
-                                <div class="slide_info">
-                                    <h3 class="news-header">Сама главная победа — это победа над самим собой.</h3>
-                                    <span class="news_date">02/08/2020</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="slick-slide">
-                            <a class="news-slide" href="#">
-                                <div class="slide-img">
-                                    <img src="img/van-tay-media-WMDKC8moG9w-unsplash.png" alt="news1" class="news-img">
-                                </div>
-                                <div class="slide_info">
-                                    <h3 class="news-header">Сама главная победа — это победа над самим собой.</h3>
-                                    <span class="news_date">02/08/2020</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="slick-slide">
-                            <a class="news-slide" href="#">
-                                <div class="slide-img">
-                                    <img src="img/vanilla-bear-films-JEwNQerg3Hs-unsplash.png" alt="news1" class="news-img">
-                                </div>
-                                <div class="slide_info">
-                                    <h3 class="news-header">Сама главная победа — это победа над самим собой.</h3>
-                                    <span class="news_date">02/08/2020</span>
-                                </div>
-                            </a>
-                        </div>
+                        {% for item in news %}
+                            <div class="slick-slide">
+                                <a class="news-slide" href="{{ item.get_absolute_url }}">
+                                    <div class="slide-img">
+                                        <img src="{{ item.photo.url }}" alt="{{ item.title }}" class="news-img">
+                                    </div>
+                                    <div class="slide_info">
+                                        <h3 class="news-header">{{ item.title }}</h3>
+                                        <span class="news_date">{{ item.publish|date }}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="all_news-button"><a href="">Все новости</a></div>
+        <div class="all_news-button"><a href="{% url 'news:post_list' %}">Все новости</a></div>
     </section>
+    {% endif %}
     <section class="join-us wrapper">
         <div class="banner">
             <div class="join-info">
                 <h3>Хотите помогать детям?</h3>
                 <p>Тогда участвуйте в нашей волонтерской программе!</p>
-                <div class="but-join"><a href="#">Стать волонтером</a></div>
+                <div class="but-join"><a href="{% url 'volunteer:volunteer_page_form' %}">Стать волонтером</a></div>
             </div>
         </div>
         <div class="join-adv">

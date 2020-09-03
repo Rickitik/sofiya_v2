@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'news.apps.NewsConfig',
     'child.apps.ChildConfig',
+    'volunteer.apps.VolunteerConfig',
+    'team.apps.TeamConfig',
     'site_custom.apps.SiteCustomConfig'
 ]
 

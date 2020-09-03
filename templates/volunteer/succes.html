@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Анкета волонтера{% endblock title %}
+
+{% block description %}Волонтерская программа благотворительного фонда поддержки детей имени императрицы А.Ф. Романовой {% endblock description %}
+
+{% block keywords %}благотворительный фонд, новости, события, помощь{% endblock keywords %}
+
+{% block page_id %}volunteer_page{% endblock page_id %}
+{% block content %}
+<section class="join_info wrapper">
+    <div class="succes_page">
+        <h1>Спасибо за обращение</h1>
+        <p>В ближайшее время мы свяжемся с Вами</p>
+    </div>
+</section>
+<section class="join-us wrapper">
+    <div class="banner">
+        <div class="join-info">
+            <h3>Хотите помогать детям?</h3>
+            <p>Тогда участвуйте в нашей волонтерской программе!</p>
+            <div class="but-join"><a href="#">Стать волонтером</a></div>
+        </div>
+    </div>
+    <div class="join-adv">
+        <div class="bla-bla">
+            <h3 class="desc">Присоединяйтесь к нам</h3>
+            <h3 class="mob">Присоединяйтесь</h3>
+        </div>
+        <div class="join-social">
+            <a class="social_img" href="#"><img src="{% static 'img/instagram.svg' %}" alt="instagram"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/vk-social-network-logo.svg' %}" alt="vk-social"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/facebook.svg' %}" alt="facebook"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/youtube.svg' %}" alt="youtube"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/telegram.svg' %}" alt="telegram"></a>
+        </div>
+        <div class="teg"><a href="#">#творимдобровместе</a></div>
+    </div>
+</section>
+{% endblock content %}

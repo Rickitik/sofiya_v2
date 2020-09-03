@@ -9,6 +9,8 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('posts/', include('news.urls', namespace='news')),
     path('site/', include('site_custom.urls', namespace='site')),
+    path('team/', include('team.urls', namespace='team')),
+    path('volunteer/', include('volunteer.urls', namespace='volunteer')),
     path('admin/', admin.site.urls),
     path('', include('child.urls', namespace='child'))
 ]

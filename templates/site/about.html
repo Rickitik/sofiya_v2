@@ -49,7 +49,7 @@
             {% if docs %}
                 <div class="list_files">
                 {% for doc in docs %}
-                    <div class="file"><a href="{{ doc.file.url }}" download><div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon"><span>{{ doc.file_name }}</span></div></a></div>
+                    <div class="file"><a href="{{ doc.file.url }}" target="_blank"><div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon"><span>{{ doc.file_name }}</span></div></a></div>
                 {% endfor %}
                 </div>
             {% endif %}

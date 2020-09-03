@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Анкета волонтера{% endblock title %}
+
+{% block description %}Волонтерская программа благотворительного фонда поддержки детей имени императрицы А.Ф. Романовой {% endblock description %}
+
+{% block keywords %}благотворительный фонд, новости, события, помощь{% endblock keywords %}
+
+{% block page_id %}volunteer_page{% endblock page_id %}
+
+{% block content %}
+<section class="intro wrapper">
+    <div class="intro-img1">
+        <div class="intro-text">
+            <h1 class="intro-text1">Волонтерская программа</h1>
+            <p class="intro-text2">Девять лет творим добро вместе</p>
+        </div>
+    </div>
+</section>
+<section class="join_info wrapper">
+    <div class="questions">
+        <div class="how">
+            <h3>Как стать волонтёром?</h3>
+            <ol>
+                <li>Ответить себе на вопрос: «Готов(а) ли я безвозмездно творить добрые дела вместе с дружной командой?» Если ответ положительный — шагай дальше;</li>
+                <li>Заполнить анкету волонтёра, расположенную внизу страницу;</li>
+                <li>Ждать звонка от сотрудника Фонда с приглашением на собеседование.</li>
+            </ol>
+        </div>
+        <div class="who">
+            <h3>Кто может стать волонтером?</h3>
+            <p>Любой человек, достигший совершеннолетия. Если вам есть 18, то смело заполняйте анкету и приходите на собеседование, мы рады каждому.</p>
+        </div>
+        <div class="what">
+            <h3>Чего ожидать от волонтерской деятельности?</h3>
+            <p>Вы получите возможность общаться с единомышленниками, обмениваться опытом и знаниями, а самое главное - творить добрые дела изо дня в день.</p>
+        </div>
+    </div>
+    <div class="application_volunteer">
+        <h3>Заявка на участие</h3>
+        <p>Хотите стать частью нашей команды? Тогда скорее заполняйте анкету. <br>Мы свяжемся с вами в течение недели и пригласим вас на собеседование. :)</p>
+        <span>Пожалуйста, заполните форму</span>
+        <form name="volunteer_form" action="{% url 'volunteer:volunteer_page_form' %}" method="POST" enctype="multipart/form-data">
+            <div class="inside_fields">
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    <div>{{ field.label_tag }}</div>
+                    {{ field.errors }}
+                    <div>{{ field }}</div>
+                {{ field.error }}
+                </div>
+            {% endfor %}
+            </div>
+            <div>
+                <div> <input name="agreement" id="agreement_id" class="input" type="checkbox">
+                    <label class="agreement-label" for="agreement_id">Даю согласие на обработку
+                        <a href="{% if site_settings.file_pers_data %}{{ site_settings.file_pers_data.url }}{% endif %}" target="_blank">
+                            персональных данных
+                        </a>
+                    </label>
+                </div>
+            </div>
+            <input type="submit" class="submit_button">
+        </form>
+    </div>
+</section>
+<section class="join-us wrapper">
+    <div class="banner">
+        <div class="join-info">
+            <h3>Хотите помогать детям?</h3>
+            <p>Тогда участвуйте в нашей волонтерской программе!</p>
+            <div class="but-join"><a href="#">Стать волонтером</a></div>
+        </div>
+    </div>
+    <div class="join-adv">
+        <div class="bla-bla">
+            <h3 class="desc">Присоединяйтесь к нам</h3>
+            <h3 class="mob">Присоединяйтесь</h3>
+        </div>
+        <div class="join-social">
+            <a class="social_img" href="#"><img src="{% static 'img/instagram.svg' %}" alt="instagram"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/vk-social-network-logo.svg' %}" alt="vk-social"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/facebook.svg' %}" alt="facebook"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/youtube.svg' %}" alt="youtube"></a>
+            <a class="social_img" href="#"><img src="{% static 'img/telegram.svg' %}" alt="telegram"></a>
+        </div>
+        <div class="teg"><a href="#">#творимдобровместе</a></div>
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}

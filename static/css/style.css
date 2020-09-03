@@ -933,6 +933,21 @@ span.news_date {
     background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
     background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 }
+#volunteer_page .succes_page{
+    padding: 100px 85px 80px 85px;
+    max-width: 100%;
+}
+#volunteer_page .succes_page h1{
+    text-align: center;
+    padding-bottom: 40px;
+}
+#volunteer_page .succes_page p{
+    text-align: center;
+}
+#volunteer_page form li {
+        color: red;
+        font-size: 13px;
+    }
 
 #about_page .banner{
     display: none;
@@ -1110,7 +1125,7 @@ span.news_date {
 	width: 313px;
 }
 #team_page .team_wrapper{
-    padding: 100px 55px 100px 85px;
+    padding: 100px 55px 50px 85px;
     border-bottom: 1px solid #F5F5F5;
 }
 #team_page .team h3{
@@ -1166,7 +1181,7 @@ span.news_date {
 }
 
 #person_page .person_information{
-    padding: 100px 85px 100px 85px;
+    padding: 100px 85px 50px 85px;
 }
 #person_page .person_name h1{
     font-size: 48px;
@@ -2303,6 +2318,9 @@ span.news_date {
     #volunteer_page .application_volunteer form {
         max-width: 100%;
     }
+    #volunteer_page .succes_page{
+        padding: 100px 35px 80px 35px;
+    }
 
     #about_page .intro-img1 {
         height: 432px;
@@ -3017,6 +3035,9 @@ span.news_date {
     }
     #volunteer_page .application_volunteer .submit_button {
         width: 98%;
+    }
+    #volunteer_page .succes_page{
+        padding: 70px 15px 80px 15px;
     }
 
     #about_page .intro-text2 {
