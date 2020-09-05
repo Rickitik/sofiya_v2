@@ -1,4 +1,6 @@
+import datetime
 from django.shortcuts import render
+from django.views.generic import ListView
 from .models import SiteSettings, AboutFilesDocuments, AboutFilesGallery, ProgramFilesDocuments, ProgramFilesGallery, ReportFilesDocuments
 
 
@@ -28,11 +30,36 @@ def program_page(request):
 	return render(request, 'site/program.html', context=context)
 
 
-def otchet_page(request):
-	context = {}
-	context['years'] = get_years_list(ReportFilesDocuments)
-	context['docs'] = ReportFilesDocuments.objects.all()
-	return render(request, 'site/report.html', context=context)
+class ReportYears:
+	def get_years(self):
+		years_sorted_list = ReportFilesDocuments.objects.all().dates('file_date', 'year', order='DESC')
+		return years_sorted_list
+
+
+class OtchetView(ReportYears, ListView):
+	"""Отчеты"""
+	this_year = datetime.date.today().year
+	model = ReportFilesDocuments
+	queryset = ReportFilesDocuments.objects.filter(file_date__year=this_year)
+	template_name = 'site/report.html'
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['this_year'] = datetime.date.today().year
+		return context
+
+
+class FilterOtchetView(ReportYears, ListView):
+	"""Фильтр по годам публикации"""
+	template_name = 'site/report.html'
+
+	def get_queryset(self):
+		return ReportFilesDocuments.objects.filter(file_date__year=self.request.GET['year'])
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['this_year'] = self.request.GET['year']
+		return context
 
 
 def contact_page(request):

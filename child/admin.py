@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django import forms
+from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from .models import Child
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
@@ -25,6 +26,7 @@ class ChildAdmin(admin.ModelAdmin):
     save_on_top = True  # Кнопка Сохранить наверху
     prepopulated_fields = {'url': ('surname', 'name', 'birthday',)}  # Автозаполнение поля url
     form = ChildAdminForm  # Подключение формы редактора
+    change_form_template = "admin/print.html"
     fieldsets = (
         (None, {
             "fields": (("name", "name_rod", "surname", "lastname"),)
@@ -59,3 +61,10 @@ class ChildAdmin(admin.ModelAdmin):
         return mark_safe(f'<img src={obj.photo.url} width="50", height="60">')
 
     get_image.short_description = 'Изображение'
+
+    def response_change(self, request, obj):
+        content = {}
+        if "_make-print" in request.POST:
+            content['object'] = obj
+            return render(request, 'admin/print_form.html', context=content)
+        return super().response_change(request, obj)

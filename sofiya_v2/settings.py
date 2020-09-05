@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'child.apps.ChildConfig',
     'volunteer.apps.VolunteerConfig',
+    'application.apps.ApplicationConfig',
     'team.apps.TeamConfig',
     'site_custom.apps.SiteCustomConfig'
 ]

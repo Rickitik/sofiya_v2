@@ -49,12 +49,11 @@
                     <div>{{ field.label_tag }}</div>
                     {{ field.errors }}
                     <div>{{ field }}</div>
-                {{ field.error }}
                 </div>
             {% endfor %}
             </div>
             <div>
-                <div> <input name="agreement" id="agreement_id" class="input" type="checkbox">
+                <div> <input name="agreement" id="agreement_id" class="input" type="checkbox" checked>
                     <label class="agreement-label" for="agreement_id">Даю согласие на обработку
                         <a href="{% if site_settings.file_pers_data %}{{ site_settings.file_pers_data.url }}{% endif %}" target="_blank">
                             персональных данных

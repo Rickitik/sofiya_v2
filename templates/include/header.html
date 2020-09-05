@@ -6,7 +6,7 @@
             <div class="logo"><a href="{% url 'child:home_page' %}"><img class="img-logo" src="{% static 'img/logo.png '%}" alt="logo"></a></div>
             <div class="teg"><a href="#">#творимдобровместе</a></div>
             <div class="help">
-                <div class="need_help"><a href="#">Нужна помощь</a></div>
+                <div class="need_help"><a href="{% url 'application:application_page' %}">Нужна помощь</a></div>
                 <div class="want_help"><a href="#">Хочу помочь</a></div>
             </div>
             <input type="checkbox" id="nav-toggle" hidden>

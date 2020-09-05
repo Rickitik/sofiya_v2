@@ -9,6 +9,7 @@
 {% block page_id %}news_page{% endblock page_id %}
 
 {% block content %}
+
     <section class="news wrapper">
         <div class="news_wrapper">
             <div class="news_head">
@@ -17,11 +18,16 @@
                 </div>
                 <div class="news_year">
                     <input type="checkbox" id="news_list_toggle" hidden>
-                    <div class="news_toggle"><label for="news_list_toggle" onclick>2020 год</label></div>
+                    <div class="news_toggle"><label for="news_list_toggle" onclick>{{ this_year }} год</label></div>
                     <div class="years_container">
-                        {% for year in years_list %}
-                        <div class="year"><label>{{ year }}</label></div>
-                        {% endfor %}
+                        <form action="{% url 'news:filter_post_list' %}" method="get" id="post_filter">
+                            {% for post in view.get_years %}
+                                <div class="year">
+                                    <label class="year_label" for="{{ post.year }}">{{ post.year }}</label>
+                                    <input type="radio" name="year" id="{{ post.year }}" value="{{ post.year }}" onchange="submit_form()" hidden/>
+                                </div>
+                            {% endfor %}
+                        </form>
                     </div>
                 </div>
             </div>
@@ -36,8 +42,13 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            <div class="news-more"><a href="#">Загрузить еще</a></div>
         </div>
     </section>
+    <script type="text/javascript">
+        submit_form = function() {
+            let form = document.getElementById("post_filter");
+            form.submit();
+        };
+    </script>
 {% endblock content %}
 {% block scripts %} {% endblock scripts %}

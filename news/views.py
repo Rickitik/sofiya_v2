@@ -1,24 +1,35 @@
 from django.views.generic import ListView, DetailView
+import datetime
 from .models import Post, Graditude
 
 
-def get_years_list(model):
-	"""Получение списка всех годов публикаций"""
-	years_list = []
-	raw_object_list = model.objects.filter(draft=False)
-
-	for onedatum in raw_object_list:
-		year = onedatum.publish.year
-		if year not in years_list:
-			years_list.append(year)
-	return years_list
+class PostYears:
+	def get_years(self):
+		years_sorted_list = Post.objects.filter(draft=False).datetimes('publish', 'year', order='DESC')
+		return years_sorted_list
 
 
-class PostsView(ListView):
+class PostsView(PostYears, ListView):
 	"""Список новостей"""
+	this_year = datetime.date.today().year
 	model = Post
-	queryset = Post.objects.filter(draft=False)
-	extra_context = {'years_list': get_years_list(model)}
+	queryset = Post.objects.filter(draft=False).filter(publish__year=this_year)
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['this_year'] = datetime.date.today().year
+		return context
+
+
+class FilterPostsView(PostYears, ListView):
+	"""Фильтр по годам публикации"""
+	def get_queryset(self):
+		return Post.objects.filter(draft=False).filter(publish__year=self.request.GET['year'])
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['this_year'] = self.request.GET['year']
+		return context
 
 
 class PostDetail(DetailView):

@@ -11,6 +11,7 @@ urlpatterns = [
     path('site/', include('site_custom.urls', namespace='site')),
     path('team/', include('team.urls', namespace='team')),
     path('volunteer/', include('volunteer.urls', namespace='volunteer')),
+    path('application/', include('application.urls', namespace='application')),
     path('admin/', admin.site.urls),
     path('', include('child.urls', namespace='child'))
 ]

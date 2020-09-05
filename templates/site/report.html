@@ -18,17 +18,22 @@
                 </div>
                 <div class="news_year">
                     <input type="checkbox" id="otchet_list_toggle" hidden>
-                    <div class="news_toggle"><label for="otchet_list_toggle" onclick>2020 год</label></div>
+                    <div class="news_toggle"><label for="otchet_list_toggle" onclick>{{ this_year }} год</label></div>
                     <div class="years_container">
-                        {% for year in years %}
-                            <div class="year"><label>{{ year }}</label></div>
-                        {% endfor %}
+                        <form action="{% url 'site:report_page_filter' %}" method="get" id="report_filter">
+                            {% for report in view.get_years %}
+                                <div class="year">
+                                    <label class="year_label" for="{{ report.year }}">{{ report.year }}</label>
+                                    <input type="radio" name="year" id="{{ report.year }}" value="{{ report.year }}" onchange="submit_form()" hidden/>
+                                </div>
+                            {% endfor %}
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="list_files">
-                {% if docs %}
-                    {% for doc in docs %}
+                {% if reportfilesdocuments_list %}
+                    {% for doc in reportfilesdocuments_list %}
                         <div class="file">
                             <a href="{{doc.file.url}}" target="_blank">
                                 <div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon">
@@ -43,6 +48,12 @@
             <div class="news-more"><a href="{% url 'site_custom:about_page' %}">Официальные документы</a></div>
         </div>
     </section>
+    <script type="text/javascript">
+        submit_form = function() {
+            let form = document.getElementById("report_filter");
+            form.submit();
+        };
+    </script>
 {% endblock content %}
 
 {% block scripts %} {% endblock scripts %}

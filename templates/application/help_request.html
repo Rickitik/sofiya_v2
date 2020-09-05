@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Заявка о помощи{% endblock title %}
+
+{% block description %}Волонтерская программа благотворительного фонда поддержки детей имени императрицы А.Ф. Романовой {% endblock description %}
+
+{% block keywords %}благотворительный фонд, новости, события, помощь{% endblock keywords %}
+
+{% block page_id %}{% endblock page_id %}
+
+{% block content %}
+<section>
+        <div class="main wrapper">
+            <h1>Заявка на получение помощи</h1>
+            <div class="application-content">
+                <div class="main-content">
+                    <div class="affert-wrapper">
+                        <p>Подача заявления происходит непосредственно в Фонд по указанному в <a href="{% url 'site_custom:program_page' %}">Положении</a> адресу, по предварительной договорённости о встрече по телефону или электронной почте с менеджером программы «Здоровье». Также вы можете подать заявление online, заполнив форму ниже.</p>
+                        <h3>Подать заявку online</h3>
+                        <span>Пожалуйста, прежде чем заполнять заявление, внимательно ознакомьтесь с содержанием <a href="#">программы «Здоровье»</a> и подготовьте необходимый пакет документов для обращения за помощью. В случае возникновения вопросов обращайтесь по телефону, указанному в <a href="{% url 'site_custom:program_page' %}">Положении</a> о реализации программы.</span>
+                        <form name="main_application_form" class="application_form" action="{% url 'application:application_page' %}" method="post" enctype="multipart/form-data">
+                            <div class="input_fields">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    <div>
+                                        <div>{{ field.label_tag }}</div>
+                                        {{ field.errors }}
+                                        <div>{{ field }}</div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div>
+                                <div> <input name="agreement" id="agreement_id" class="input" type="checkbox" checked>
+                                    <label class="agreement-label" for="agreement_id">Даю согласие на обработку
+                                        <a href="{% if site_settings.file_pers_data %}{{ site_settings.file_pers_data.url }}{% endif %}" target="_blank">
+                                            персональных данных
+                                        </a>
+                                    </label>
+                                </div>
+                            </div>
+                            <input type="submit" class="submit_button">
+                        </form>
+                    </div>
+                </div>
+                <div class="right-sidebar">
+                    <h3>Файлы</h3>
+                    <div class="files">
+                        {% if site_settings.file_zayavleniye %}
+                        <a href="{{ site_settings.file_zayavleniye.url }}" download ><img src="{% static 'img/doc.png' %}" alt="doc_icon">Заявление</a>
+                        {% endif %}
+                        {% if site_settings.file_list_documents %}
+                        <a href="{{ site_settings.file_list_documents.url }}" download ><img src="{% static 'img/doc.png' %}" alt="doc_icon">Перечень документов</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}

@@ -1,6 +1,5 @@
 from .models import Volunteer
 from django.forms import ModelForm, TextInput, Textarea
-# -*- coding: utf-8 -*-
 
 
 class VolunteerForm(ModelForm):
