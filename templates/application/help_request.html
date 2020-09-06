@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static recaptcha3 %}
 
 {% block title %}Заявка о помощи{% endblock title %}
 
@@ -23,11 +23,16 @@
                             <div class="input_fields">
                                 {% csrf_token %}
                                 {% for field in form %}
-                                    <div>
+                                     {% if forloop.last %}
+                                         {{ field }}
+                                     {% else %}
+                                         <div>
                                         <div>{{ field.label_tag }}</div>
                                         {{ field.errors }}
                                         <div>{{ field }}</div>
                                     </div>
+                                     {% endif %}
+
                                 {% endfor %}
                             </div>
                             <div>

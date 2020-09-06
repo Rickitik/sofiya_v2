@@ -45,11 +45,15 @@
             <div class="inside_fields">
             {% csrf_token %}
             {% for field in form %}
+                {% if forloop.last %}
+                     {{ field }}
+                {% else %}
                 <div>
                     <div>{{ field.label_tag }}</div>
                     {{ field.errors }}
                     <div>{{ field }}</div>
                 </div>
+                {% endif %}
             {% endfor %}
             </div>
             <div>

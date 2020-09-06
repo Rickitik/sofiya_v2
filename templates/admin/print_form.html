@@ -1,4 +1,53 @@
-<p>SOme form</p>
-{{ object.fio }}
-{{ object.request_date }}
-<img src="{{ object.photo.url }}" alt="">
+<div class="wrapper">
+    <div class="header">
+        <h1>{{ object.surname }} {{ object.name }} {{ object.lastname }}</h1>
+    </div>
+    <h3>
+        {% if object.status == 'already_help' %}
+            Помогли! Собрали {{ object.money_collected }} руб. (требовалось {{ object.money_need }} руб)
+        {% else %}
+            Требуется {{ object.money_need }} руб
+        {% endif %}
+    </h3>
+
+    <div class="common">
+        <div class="photo-commen">
+           <img src="{{ object.photo.url }}" alt="">
+        </div>
+        <div class="info-common">
+            <div><p><span>Дата рождения:</span> {{ object.birthday }}</p></div>
+            <div><p><span>Город проживания:</span> {{ object.place }}</p></div>
+            <div>
+                <p><span>Основная проблема:</span> {{ object.problem }}</p>
+            </div>
+        </div>
+
+    </div>
+    {{ object.history|safe }}
+</div>
+<style>
+    .wrapper{
+        width: 1024px;
+        margin: 30px auto;
+    }
+    .info-common{
+        padding-left: 25px;
+    }
+    .info-common span{
+        font-weight: bold;
+    }
+    .photo-commen{
+        max-width: 530px;
+    }
+    .photo-commen img{
+        max-width: 530px;
+    }
+    .header{
+        border-bottom: 1px solid #666666;
+    }
+    .common{
+        display: flex;
+        flex-flow: row wrap;
+    }
+</style>
+

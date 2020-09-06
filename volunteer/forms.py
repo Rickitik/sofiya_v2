@@ -1,9 +1,11 @@
 from .models import Volunteer
 from django.forms import ModelForm, TextInput, Textarea
+from snowpenguin.django.recaptcha3.fields import ReCaptchaField
 
 
 class VolunteerForm(ModelForm):
 	"""Форма заявки"""
+	captcha = ReCaptchaField()
 	class Meta:
 		model = Volunteer
 		exclude = ['sent']

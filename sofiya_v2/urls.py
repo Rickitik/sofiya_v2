@@ -5,6 +5,10 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+admin.site.site_header = "Администрирование данных фонда"
+admin.site.site_title = "Фонд поддержки детей им. А.Ф. Романовой"
+admin.site.index_title = "Основные приложения"
+
 urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('posts/', include('news.urls', namespace='news')),

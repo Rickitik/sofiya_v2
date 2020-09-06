@@ -1,9 +1,12 @@
 from .models import Application
 from django.forms import ModelForm, TextInput, Textarea, FileField
+from snowpenguin.django.recaptcha3.fields import ReCaptchaField
 
 
 class ApplicationForm(ModelForm):
 	"""Форма заявки"""
+	captcha = ReCaptchaField()
+
 	class Meta:
 		model = Application
 		exclude = ['request_date']

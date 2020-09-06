@@ -15,18 +15,14 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '79mq9n@d%%k#ry(c_6^6-k67*2fsjg7!5w6t$$t6@7mzi_dsw2'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+RECAPTCHA_PUBLIC_KEY = "6LcAeMgZAAAAANc6LIg3sgtQN_2vCSuqT2I8YY8x"
+RECAPTCHA_PRIVATE_KEY = "6LcAeMgZAAAAAEuOE1_I3xyxcPUw9umbgrx0aKIx"
+RECAPTCHA_DEFAULT_ACTION = 'generic'
+RECAPTCHA_SCORE_THRESHOLD = 0.5
 
 # Application definition
 
@@ -45,7 +41,8 @@ INSTALLED_APPS = [
     'volunteer.apps.VolunteerConfig',
     'application.apps.ApplicationConfig',
     'team.apps.TeamConfig',
-    'site_custom.apps.SiteCustomConfig'
+    'site_custom.apps.SiteCustomConfig',
+    'snowpenguin.django.recaptcha3',
 ]
 
 MIDDLEWARE = [
@@ -82,15 +79,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'sofiya_v2.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
@@ -130,9 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_DIR = BASE_DIR/'static'
-STATICFILES_DIRS = [STATIC_DIR]
-# STATIC_ROOT = BASE_DIR/'static'
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
@@ -206,3 +193,8 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+try:
+    from .local_settings import *
+except ImportError:
+    from .prod_settings import *

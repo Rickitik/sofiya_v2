@@ -28,6 +28,11 @@ main {
     max-width: 1280px;
     width: 100%;
 }
+#fixed_header, #text_fixed_header{
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
 .header{
     height: 150px;
     box-shadow: 0 -1px 25px rgba(154, 147, 140, 0.5);
