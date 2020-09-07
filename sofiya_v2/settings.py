@@ -78,7 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sofiya_v2.wsgi.application'
 
-
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 
