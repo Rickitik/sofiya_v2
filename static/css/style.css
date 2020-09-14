@@ -11,7 +11,14 @@ body, html{
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
-a {cursor: url(../img/cursor-1297941_640.png), default;}
+a {
+    cursor: url(../img/cursor-1297941_640.png), default;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
 
 header {
     position: fixed;
@@ -75,7 +82,7 @@ main {
     width: 360px;
     display: flex;
     justify-content: space-between;
-    margin-left: 95px;
+    margin-left: auto;
     padding: 15px 10px 0 10px;
 }
 .need_help{
@@ -258,13 +265,11 @@ main {
     margin-right: 200px;
     display: flex;
     justify-content: space-between;
-    align-items: left;
     flex-direction: column;
 }
 .num1, .num2, .num3{
     display: flex;
     justify-content: center;
-    align-items: left;
     flex-direction: column;
     padding: 0 0 70px 0;
 }
@@ -283,6 +288,7 @@ main {
     height: 1400px;
     background: #F5F5F5 0 0 no-repeat padding-box;
     opacity: 1;
+    padding-bottom: 20px;
 }
 
 .need-help-info-block, .already-helped-info-block, .news-info-block{
@@ -354,6 +360,7 @@ main {
 
 .slide_info{
     padding-top: 20px;
+    max-width: 255px;
 }
 
 .child-name{
@@ -363,11 +370,11 @@ main {
 }
 
 .slide_info p{
-    font-size: 16px;
+    font-size: 0.9em;
     font-weight: normal;
     letter-spacing: 0;
-    width: 225px;
     margin-bottom: 20px;
+    padding-right: 5px;
 }
 
 .child-left-to-collect{
@@ -458,12 +465,12 @@ main {
 }
 .news .slide-img {
     height: 260px;
-    max-width: 350px;
+    max-width: 97%;
 }
 
 .news .slide-img img {
     margin: 0 auto;
-    width: 350px;
+    width: 100%;
     height: 260px;
     object-fit: cover;
 }
@@ -2113,6 +2120,294 @@ span.news_date {
     padding: 50px 0 0 !important;
 }
 
+#payment_page .payment_page_info,
+#payment_page .payment_page_way{
+    padding: 100px 85px 0;
+}
+#payment_page .payment_page_info h1 {
+    font-size: 48px;
+    font-weight: 500;
+    padding-bottom: 50px;
+}
+#payment_page .payment_page_info {
+    max-width: 730px;
+}
+#payment_page .payment_page_info p{
+    font-size: 16px;
+}
+#payment_page h3{
+    font-size: 24px;
+    padding-bottom: 50px;
+    font-weight: 500;
+}
+#payment_page .payment_list{
+
+}
+#payment_page .payment_list .pay-toggle{
+    display: inline-block;
+    width: 255px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 4px;
+    margin-right: 30px;
+    border: 1px solid #F5F5F5;
+    background-color: #F5F5F5;
+    text-align: center;
+}
+#payment_page .payment_list .pay-toggle:last-of-type{
+    margin-right: 0;
+}
+#payment_page .payment_list .pay-toggle:hover{
+    border: 1px solid #FFB300 !important;
+    background-color: #ffffff !important;
+    cursor: url(../img/cursor-1297941_640.png), default;
+}
+
+#bank_card_selector:checked ~ #bank_card_label {
+    border: 1px solid #FFB300;
+    background-color: #ffffff;
+}
+#bank_card_selector:checked ~ #service_pay_label, #bank_transfer_label {
+    border: 1px solid #F5F5F5;
+    background-color: #F5F5F5;
+}
+#bank_card_selector:checked ~ #bank_card_id{
+    display: block;
+}
+#bank_card_selector:checked ~ #service_pay_id, #bank_transfer_id{
+    display: none;
+}
+
+#service_pay_selector:checked ~ #service_pay_label {
+    border: 1px solid #FFB300;
+    background-color: #ffffff;
+}
+#service_pay_selector:checked ~ #bank_card_label, #bank_transfer_label {
+    border: 1px solid #F5F5F5;
+    background-color: #F5F5F5;
+}
+#service_pay_selector:checked ~ #service_pay_id{
+    display: block;
+}
+#service_pay_selector:checked ~ #bank_card_id, #bank_transfer_id{
+    display: none;
+}
+
+#bank_transfer_selector:checked ~ #bank_transfer_label {
+    border: 1px solid #FFB300;
+    background-color: #ffffff;
+}
+#bank_transfer_selector:checked ~ #bank_card_label, #service_pay_label {
+    border: 1px solid #F5F5F5;
+    background-color: #F5F5F5;
+}
+#bank_transfer_selector:checked ~ #bank_transfer_id{
+    display: block;
+}
+#bank_transfer_selector:checked ~ #bank_card_id, #service_pay_id{
+    display: none;
+}
+#bank_card_id .bank_wrapper{
+    padding-top: 100px;
+}
+#bank_card_id .fixed_sums{
+    display: flex;
+    flex-flow: row wrap;
+}
+#bank_card_id .sum_label, #bank_card_id .raz, #bank_card_id .person_field{
+    display: block;
+    width: 160px;
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid #F5F5F5;
+    background-color: #F5F5F5;
+    cursor: url(../img/cursor-1297941_640.png), default;
+    line-height: 48px;
+    font-size: 16px;
+    text-align: center;
+    -webkit-transition: 0.3s all;
+    -moz-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    -ms-transition: 0.3s all;
+    margin-right: 30px;
+}
+
+#bank_card_id .sum_label:hover, #bank_card_id .sum_label:focus,
+#bank_card_id .raz:hover, #bank_card_id .raz:focus,
+#bank_card_id .checked{
+    border: 1px solid #FFB300;
+    background-color: #ffffff;
+}
+#bank_card_id .raz{
+    width: 370px;
+    margin-right: 0;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    text-align: left;
+    color: #000000;
+    padding-left: 25px;
+    font-size: 18px;
+}
+#bank_card_id #porpose{
+    margin-top: 4px;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+#bank_card_id #porpose::-webkit-input-placeholder{
+    color: #222222;
+}
+.raz {
+  -moz-appearance: textfield;
+}
+.raz::-webkit-inner-spin-button {
+  display: none;
+}
+.raz::-webkit-input-placeholder {
+    color: #000000;
+}
+#bank_card_id .sum_label:last-of-type{
+    margin-right: 0;
+}
+#bank_card_id .sum_label:after{
+    content: '\20BD';
+}
+#bank_card_id #porpose_lbl{
+    font-size: 14px;
+}
+#bank_card_id .everymonth label{
+    font-size: 14px;
+}
+#bank_card_id .person_ids{
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+#bank_card_id .person_ids h3{
+    font-size: 24px;
+    font-weight: 500;
+}
+#bank_card_id .person_id_list{
+    width: 730px;
+    display: flex;
+    flex-flow: column wrap;
+    height: 175px;
+}
+#bank_card_id .person_field {
+    width: 350px;
+    margin-bottom: 30px;
+    text-align: left;
+    padding-left: 10px;
+}
+#bank_card_id .person_field::-webkit-input-placeholder{
+    color: #222222;
+}
+#bank_card_id .every_month-label {
+    font-size: 14px;
+}
+#bank_card_id .every_month-label a{
+    color: #000000;
+}
+#bank_card_id .agree_class{
+    margin-bottom: 50px;
+}
+#bank_card_id .donate {
+    width: 350px;
+    height: 48px;
+    border: 1px solid #1E88E5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #1E88E5;
+    color: #fff;
+    font-size: 16px;
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    margin-bottom: 30px;
+    cursor: url(../img/cursor-1297941_640.png), default;
+}
+#bank_card_id .donate:hover{
+    background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+    background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+    background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+    background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+    background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+}
+#bank_card_id .garantee_of_secure{
+    padding-bottom: 150px;
+    width: 720px;
+}
+#bank_card_id .garantee_of_secure p{
+    padding-bottom: 15px;
+}
+#bank_transfer_id .bank_tr_wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    padding-top: 100px;
+    padding-bottom: 70px;
+}
+#bank_transfer_id .bank_tr_files {
+    margin-left: auto;
+    padding-right: 50px;
+}
+#bank_transfer_id .bank_tr_rekv {
+    width: 430px;
+}
+#bank_transfer_id .schema {
+    margin-bottom: 20px;
+}
+#bank_transfer_id .pay_porpose{
+    padding-top: 50px;
+    width: 100%;
+    border-top: 1px solid #dddddd;
+    padding-bottom: 70px;
+}
+#bank_transfer_id .pay_porpose p{
+    max-width: 400px;
+}
+
+@media (max-width: 1024px) {
+    .teg {
+        display: none;
+    }
+    [id='nav-toggle']:checked ~ .nav .social {
+        left: 90px;
+        margin-top: 106px;
+    }
+    .stats-num {
+        margin: 0;
+    }
+    .quote-text3 {
+        width: 100%;
+    }
+    .application-content .main-content .affert-wrapper {
+        width: 710px;
+        padding-left: 85px;
+        padding-top: 50px;
+    }
+    .application-content .right-sidebar h3 {
+        padding-left: 21px;
+    }
+    #child_page .info-heading h2 {
+        font-size: 32px;
+        padding-top: 14px;
+    }
+    #payment_page .payment_list .pay-toggle {
+        width: 201px;
+    }
+    #contacts_page .docs{
+        width: 210px;
+        order: 1;
+        padding-top: 50px;
+    }
+    #contacts_page .contacts_anketa {
+        width: 480px;
+        display: flex;
+        flex-flow: row wrap;
+    }
+}
+
 @media (max-width: 992px) {
   .page-video {
     background: url('../img/screen2.jpg')50% 50% no-repeat;
@@ -2122,6 +2417,14 @@ span.news_date {
   .page-video .video {
     display: none;
   }
+
+}
+
+@media screen and (max-width: 900px) {
+
+}
+@media (max-width: 800px) {
+
 }
 
 /* Медиа 768 --------------------------------------------------------------------------------------*/
@@ -2129,6 +2432,7 @@ span.news_date {
     .wrapper{
         max-width: 768px;
     }
+
     .header-text{
          margin-left: 15%;
     }
@@ -2140,8 +2444,8 @@ span.news_date {
         display: none;
     }
     .help{
-         width: 330px;
-         margin-left: 50px;
+        width: 330px;
+        margin-left: auto;
     }
     .need_help{
          width: 150px;
@@ -2166,10 +2470,9 @@ span.news_date {
         font-size: 24px;
     }
     .stats{
-        height: 782px;
+        height: auto;
         flex-wrap: nowrap;
-        padding-left: 39px;
-        /*margin: 100px 39px 100px 39px;*/
+        padding: 100px 39px 100px 39px;
     }
     .stats-text1, .stats-text2{
         width: 70%;
@@ -2201,13 +2504,16 @@ span.news_date {
     }
     .info {
         width: 100%;
-        height: 1350px;
+        height: auto;;
+    }
+    .slider-wrapper {
+        padding-top: 70px;
     }
     .need-help-info-block, .already-helped-info-block, .news-info-block {
-        padding: 0 39px 0;
+        padding: 0 39px 30px;
     }
     .slick-slide {
-        max-width: 230px;
+        max-width: inherit;
     }
     .slide-img {
         height: 156px;
@@ -2216,6 +2522,7 @@ span.news_date {
     .slide-img img {
         max-width: 220px;
         height: 160px;
+        width: 100%;
     }
     .all_children-button, .all_news-button {
         margin: 80px auto 0;
@@ -2679,24 +2986,82 @@ span.news_date {
         width: 90%;
         margin: 0 auto;
     }
+    #payment_page .payment_page_info,
+    #payment_page .payment_page_way{
+        padding: 100px 39px 0;
+    }
+    #payment_page .payment_page_info {
+        max-width: 100%;
+    }
+    #payment_page .payment_list .pay-toggle{
+        width: 201px;
+    }
+    #payment_page .payment_list .pay-toggle:last-of-type{
+        margin-right: 0;
+    }
+    #bank_card_id .sum_label{
+        width: 136px;
+        margin-bottom: 20px;
+    }
+    #bank_card_id .person_field {
+        width: 326px;
+    }
+    #bank_card_id .raz {
+        width: 350px;
+    }
 
 
 
 }
 
-
-
-/* Медиа 375 -----------------------------------------------------------------------------------------*/
-
-@media screen and (max-width: 375px) {
-    .wrapper{
-        /*max-width: 320px;*/
+@media (max-width: 680px) {
+    #text_fixed_header {
+        display: none !important;
     }
+        .stats-num{
+        flex-direction: column;
+        margin-right: 30px;
+        margin-top: 60px;
+        order: -1;
+    }
+    .num1, .num3{
+        background: transparent linear-gradient(270deg, #FFFFFF00 0%, #F9F3FB 100%) 0 0 no-repeat padding-box;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 15px 20px 15px 20px;
+        margin-top: 5px;
+    }
+    .num2 {
+        background: transparent linear-gradient(90deg, #FFFFFF00 0%, #F9F3FB 100%) 0 0 no-repeat padding-box;
+        align-self: flex-end;
+        padding: 15px 20px 15px 20px;
+        margin-top: 5px;
+    }
+    .stats-text1, .stats-text2 {
+        width: 85%;
+        margin-left: 0;
+    }
+    #bank_transfer_id .bank_tr_files {
+        margin-left: 0;
+        padding-right: 0;
+        padding-top: 50px;
+    }
+    #bank_transfer_id .schema {
+        margin-bottom: 20px;
+        display: inline-block;
+        padding-right: 40px;
+    }
+}
+
+@media (max-width: 640px) {
+    .quote-text3 {
+        width: 100%;
+    }
+}
+@media (max-width: 580px) {
     .header{
         height: 148px;
-    }
-    .header-text{
-        display: none;
     }
     .header-info{
         flex-wrap: wrap;
@@ -2706,17 +3071,13 @@ span.news_date {
     .logo{
         margin-right: 60px;
     }
-    .img-logo{
-        width: 130px;
-        height: 56px;
-    }
     .toggle {
     padding: 10px 0 0 30px;
     }
     .help{
          margin-left: 0;
          order: 1;
-         padding: 21px 0 0;
+         padding: 15px 0 0;
         width: 100%;
     }
 
@@ -2728,6 +3089,537 @@ span.news_date {
     }
     .toggle{
         order: 0;
+    }
+    .intro-text1 {
+        font-size: 32px;
+        width: 100%;
+    }
+    #about_page .intro-text2 {
+        padding-left: 30%;
+    }
+}
+@media (max-width: 480px) {
+
+    .num-text1{
+        font-size: 32px;
+        margin-bottom: 0;
+    }
+    .num-text2{
+        font-size: 14px;
+    }
+    .slider-controls {
+        display: none;
+    }
+    .news {
+        width: 100%;
+        height: auto;
+        background: #fff 0 0 no-repeat padding-box;
+        opacity: 1;
+        padding-bottom: 25px;
+    }
+    .all_children-button, .all_news-button {
+        margin: 40px auto 0;
+        width: 210px;
+        height: 48px;
+    }
+    #about_page .intro-text2 {
+        padding-left: 16%;
+    }
+    .application-content .main-content .affert-wrapper {
+        width: 90%;
+        padding-left: 20px;
+        padding-top: 30px;
+    }
+    .main h1 {
+        padding-left: 20px;
+        width: 320px;
+        font-size: 28px;
+        padding-top: 50px;
+    }
+}
+@media (max-width: 440px) {
+    .nav {
+        width: 90%;
+        min-width: 90%;
+        padding-top: 54px;
+
+    }
+
+    .nav > .social > a:last-of-type {
+        margin-right: 0;
+    }
+    .slide_info {
+        padding-bottom: 50px;
+    }
+    .need-help-info-block .already{
+        display: inline-block;
+        padding-top: 30px;
+    }
+    .need-help-info-block .already a{
+        font-size: 18px;
+        color: #1E88E5;
+    }
+    .slide-img {
+        height: auto;
+        max-width: 100%;
+    }
+    .slide-img img {
+        max-width: 100%;
+        height: auto;
+        width: 100%;
+    }
+    .info-heading h2 {
+        font-size: 32px;
+    }
+    .footer {
+        height: 760px;
+    }
+    .footer-info, .footer-menu, .footer-social, .footer-info-offerta {
+        flex-basis: 100%;
+    }
+    .footer-info {
+        padding-top: 75px;
+    }
+    .footer-info, .footer-menu, .footer-social {
+        height: auto;
+    }
+    .footer-menu {
+        padding-top: 50px;
+        height: 200px;
+        align-content: space-around;
+    }
+    .footer-social {
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+    }
+    .footer-info-offerta .offert {
+        flex-basis: 100%;
+        order: -2;
+        padding-top: 30px;
+    }
+    .footer .with-help {
+        flex-basis: 100%;
+        order: -1;
+        padding-left: 25px;
+    }
+    .footer .copyright {
+        flex-basis: 100%;
+        padding-left: 25px;
+    }
+    .footer-info-offerta .offert p {
+        text-align: left;
+        padding-left: 25px;
+        padding-right: 60px;
+    }
+    .already-helped-info-block{
+        display: none;
+    }
+    #about_page .history .photo span {
+        right: 27%;
+        top: 90%;
+    }
+    #about_page .file {
+        min-width: 200px;
+        width: 90%;
+        margin-bottom: 30px;
+    }
+    #about_page .file span {
+        width: 250px;
+    }
+    #about_page .gallery {
+        padding: 0 15px 30px 15px;
+    }
+    .application-content .main-content .input_fields {
+        height: auto;
+    }
+    .application-content .main-content .input_fields > div {
+        width: 98%;
+    }
+    .application-content .main-content .input_fields textarea {
+        width: 98%;
+    }
+    .application-content .main-content .no-background {
+        order: 1;
+    }
+    .application-content .main-content .submit_button {
+        width: 98%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .application-content .right-sidebar .files a {
+        padding-bottom: 34px;
+    }
+    #child_page .child_detail_info{
+        padding: 70px 15px 70px;
+    }
+    #child_page h1{
+        font-size: 32px;
+    }
+    #child_page .child_name{
+        padding-bottom: 50px;
+    }
+    #child_page .child_detail_img{
+        width: 100%;
+        height: auto;
+        min-width: 100%;
+    }
+    #child_page .money_progress{
+        height: auto;
+        margin-left: 0;
+        width: 100%;
+    }
+    #child_page .money_progress h4{
+        font-size: 24px;
+        padding-bottom: 30px;
+        padding-top: 50px;
+    }
+    #child_page .all_children-button {
+        margin: 50px auto 0;
+        width: 100%;
+    }
+    #child_page progress {
+        display: inline-block;
+        width: 100%;
+    }
+    #child_page .child_data {
+        padding-top: 70px;
+        width: 100%;
+    }
+    #child_page .child_history {
+        padding-top: 70px;
+    }
+    #child_page .need-help-info-block .already {
+        display: none;
+    }
+    #child_page.helped .money_progress .thanks_for_help {
+        width: 100%;
+    }
+    #payment_page .payment_page_info, #payment_page .payment_page_way {
+        padding: 100px 15px 0;
+    }
+    #payment_page .payment_list .pay-toggle {
+        width: 90%;
+        margin: 0 auto 30px;
+    }
+    #contacts_page .docs .reports{
+        display: none;
+    }
+    #contacts_page .docs {
+        width: 100%;
+        order: 0;
+        padding-top: 30px;
+    }
+    #contacts_page .schema {
+        width: 100%;
+    }
+    #contacts_page .contacts_anketa {
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+    }
+    #contacts_page .block {
+        padding-top: 50px;
+    }
+    #contacts_page .rekvizit {
+        padding: 50px 15px 70px;
+    }
+    #contacts_page .rekvizit p {
+        width: 100%;
+    }
+    #news_page .news_wrapper{
+        padding: 70px 15px 70px 15px;
+    }
+    #news_page .news_head {
+        padding-bottom: 50px;
+    }
+    #news_page .news_head h1{
+        font-size: 32px;
+    }
+    #news_page .news_year {
+        width: 100%;
+        padding-top: 50px;
+    }
+    #news_page .news_year .years_container {
+        width: 100%;
+    }
+    #news_page .news_item{
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 50px;
+    }
+    .news-more {
+        width: 100%;
+    }
+    #news_detail .detail_information{
+        padding: 70px 15px;
+    }
+    #news_detail .news_detail_title{
+        width: 100%;
+    }
+    #news_detail .news_detail_title h1{
+        font-size: 32px;
+    }
+    #news_detail .news_detail_date span{
+        font-size: 14px;
+    }
+    #news_detail .news-detail-img{
+        width: 100%;
+        height: auto;
+    }
+    #news_detail .slider-controls{
+        display: none;
+    }
+    #news_detail .news-more{
+        display: block;
+    }
+     #otchet_page .otchet_wrapper{
+        padding: 70px 15px 70px 15px;
+    }
+    #otchet_page .otchet_head {
+        padding-bottom: 50px;
+    }
+    #otchet_page .otchet_head h1{
+        font-size: 32px;
+    }
+    #otchet_page .news_year {
+        width: 100%;
+        padding-top: 50px;
+    }
+    #otchet_page .news_year .years_container {
+        width: 100%;
+    }
+    #otchet_page .file {
+        min-width: 100%;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    #otchet_page .news-more {
+        width: 100%;
+    }
+    #graditude_page .graditude_page_info,
+    #graditude_detail_page .graditude_page_info,
+    #graditude_detail_page .graditude_list,
+    #graditude_page .graditude_list {
+        padding: 70px 15px 0;
+    }
+    #graditude_page .graditude_page_info h1,
+    #graditude_detail_page .graditude_page_info h1
+    {
+        font-size: 32px;
+    }
+    #graditude_page .graditude_page_info,
+    #graditude_detail_page .graditude_page_info
+    {
+        width: 100%;
+    }
+    #graditude_page .help-toggle{
+        font-size: 18px;
+        padding-right: 30px;
+    }
+    #us_grad:checked ~ #already_helped {
+        font-size: 18px;
+    }
+
+    #we_grad:checked ~ #need_help{
+        font-size: 18px;
+    }
+    #graditude_page .graditude_list .card_wrapper{
+        width: 100%;
+        height: auto;
+        margin: 0 auto 40px;
+    }
+    #graditude_page .graditude_list .card-img{
+        width: 100%;
+        height: auto;
+    }
+    #graditude_detail_page .slider-nav{
+        display: none;
+    }
+    #graditude_detail_page .slider-for > div{
+        display: none;
+    }
+    #graditude_detail_page .slider-for .slide.first{
+        display: block;
+    }
+    #graditude_detail_page .slider-for img {
+        width: 100%;
+    }
+    #program_page .intro-img1 {
+        background: url(../img/program_1img.png) 42% 59% no-repeat #000;
+        height: 420px;
+        background-size: cover;
+    }
+    #program_page .intro-text1 {
+        font-size: 32px;
+        width: 100%;
+    }
+    #program_page .intro-text {
+        margin-top: 70px;
+    }
+    #program_page .information{
+        padding: 70px 15px;
+        display: flex;
+        flex-flow: row wrap;
+    }
+    #program_page .common_info{
+        width: 100%;
+    }
+    #program_page .common_info h3{
+        padding-bottom: 30px;
+    }
+    #program_page .all_children-button {
+        margin: 10px auto 0;
+        width: 100%;
+    }
+    #program_page .files{
+        padding: 0 15px 100px 15px;
+    }
+    #program_page .file {
+        min-width: 100%;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    #program_page .gallery {
+        padding: 0 15px 30px 15px;
+    }
+    #program_page .info-heading {
+        margin-bottom: 0;
+    }
+    #team_page .join_us_team {
+        padding: 70px 15px 40px 15px;
+    }
+    #person_page .person_information{
+        padding: 70px 15px 50px 15px;
+    }
+    #person_page .person_name h1{
+        font-size: 32px;
+        width: 100%;
+        font-weight: 500;
+        padding-bottom: 30px;
+    }
+    #person_page .person_position h3{
+        font-size: 24px;
+        font-weight: 500;
+        padding-bottom: 50px;
+    }
+    #person_page .person-img{
+        width:100%;
+        height: auto;
+        margin-bottom: 50px;
+    }
+    #person_page .person-img img{
+        width: 100%;
+    }
+    #person_page .person_biography{
+        width: 100%;
+    }
+    #person_page .person_biography p{
+        font-size: 16px;
+        font-weight: normal;
+        padding-bottom: 15px;
+    }
+    #person_page .awards{
+        padding-top: 70px;
+    }
+    #person_page .awards h3{
+        font-size: 24px;
+        font-weight: 500;
+    }
+    #person_page .diploma{
+        width:130px;
+        height: 174px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+    #person_page .other_person_gal, #news_detail .other_person_gal {
+        padding: 0 15px;
+    }
+    #person_page .slider-wrapper, #news_detail .slider-wrapper {
+        padding-top: 20px;
+    }
+    #person_page .slider-body, #news_detail .slider-body {
+        padding: 0 5px;
+    }
+    #person_page .slide-img, #news_detail .slide-img {
+        width: 290px;
+        height: 216px;
+        max-width: none;
+    }
+    #volunteer_page .intro-img1 {
+        background: url(../img/volunteer_back.png) 50% 30% no-repeat #000;
+        height: 420px;
+        background-size: cover;
+    }
+    #volunteer_page .intro-text {
+        padding-top: 70px;
+        padding-left: 15px;
+    }
+    #volunteer_page .intro-text1 {
+        font-size: 32px;
+        width: 74%;
+    }
+    #volunteer_page .questions h3 {
+        margin-top: 70px;
+        padding-bottom: 30px;
+    }
+    #volunteer_page .questions {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #volunteer_page .application_volunteer span{
+        display: none;
+    }
+    #volunteer_page .application_volunteer {
+        padding: 70px 18px 0;
+        margin-top: 50px;
+    }
+    #volunteer_page .application_volunteer .inside_fields {
+        height: auto;
+        display: flex;
+        flex-flow: column wrap;
+        padding-top: 0;
+    }
+    #volunteer_page .application_volunteer .inside_fields > div {
+        width: 96%;
+        padding-bottom: 14px;
+    }
+    #volunteer_page .application_volunteer .submit_button {
+        width: 98%;
+    }
+    #bank_card_id .person_id_list {
+        width: 100%;
+        height: auto;
+    }
+    #bank_card_id .person_field {
+        width: 95%;
+    }
+    #bank_card_id .donate {
+        width: 100%;
+    }
+    #bank_card_id .garantee_of_secure {
+        padding-bottom: 100px;
+        width: 100%;
+    }
+}
+
+
+/* Медиа 375 -----------------------------------------------------------------------------------------*/
+
+@media screen and (max-width: 375px) {
+    .wrapper{
+        /*max-width: 320px;*/
+    }
+    .header-text{
+        display: none;
+    }
+    .img-logo{
+        width: 130px;
+        height: 56px;
+        margin-bottom: 6px;
     }
     .intro-img1{
       height: 420px;
@@ -2761,42 +3653,11 @@ span.news_date {
     .quote-text{
         background: none;
     }
-    .stats-num{
-        flex-direction: column;
-        margin-right: 30px;
-        margin-top: 60px;
-        order: -1;
-        align-items: left;
-    }
-    .num1, .num3{
-        background: transparent linear-gradient(270deg, #FFFFFF00 0%, #F9F3FB 100%) 0 0 no-repeat padding-box;
-        display: flex;
-        justify-content: center;
-        align-items: left;
-        flex-direction: column;
-        padding: 15px 20px 15px 20px;
-        margin-top: 5px;
-    }
-    .num2 {
-        background: transparent linear-gradient(90deg, #FFFFFF00 0%, #F9F3FB 100%) 0 0 no-repeat padding-box;
-        align-self: flex-end;
-        align-items: right;
-        padding: 15px 20px 15px 20px;
-        margin-top: 5px;
-    }
-    .num-text1{
-        font-size: 32px;
-        margin-bottom: 0;
-    }
-    .num-text2{
-        font-size: 14px;
-    }
+
+
     .quote-text3{
         width: 290px;
         margin-top: 50px;
-    }
-    .stats {
-        height: 868px;
     }
     .info-heading h2 {
         font-size: 32px;
@@ -2834,14 +3695,7 @@ span.news_date {
     .slide_info{
         padding-bottom: 50px;
     }
-    .need-help-info-block .already{
-        display: inline-block;
-        padding-top: 30px;
-    }
-    .need-help-info-block .already a{
-        font-size: 18px;
-        color: #1E88E5;
-    }
+
     .info-heading {
         margin-bottom: 45px;
     }
@@ -3319,6 +4173,10 @@ span.news_date {
         padding-top: 70px;
         width: 100%;
     }
+    #child_page .info-heading h2 {
+        font-size: 28px;
+        padding-top: 0;
+    }
     #child_page .child_history {
         padding-top: 70px;
     }
@@ -3368,10 +4226,6 @@ span.news_date {
     }
     #program_page .info-heading {
         margin-bottom: 0;
-    }
-    .slider-controls {
-        display: block;
-        top: 0;
     }
     #main_page .slider-controls {
         display: none !important;
@@ -3494,7 +4348,29 @@ span.news_date {
     #graditude_detail_page .slider-for img {
         width: 100%;
     }
-
+    #payment_page .payment_page_info,
+    #payment_page .payment_page_way{
+        padding: 70px 15px 0;
+    }
+    #payment_page .payment_page_info h1 {
+        font-size: 32px;
+    }
+    #payment_page .payment_list .pay-toggle{
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+    #bank_card_id .sum_label {
+        width: 112px;
+    }
+    #bank_card_id .raz {
+        width: 90%;
+    }
+    #bank_card_id #porpose {
+        font-size: 14px;
+        padding-left: 8px;
+        width: 96%;
+    }
 
 
 }

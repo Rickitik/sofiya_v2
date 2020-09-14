@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.db.utils import ProgrammingError
-from .models import SiteSettings, ProgramFilesDocuments, ProgramFilesGallery, AboutFilesDocuments, AboutFilesGallery, ReportFilesDocuments
+from .models import SiteSettings, ProgramFilesDocuments, ProgramFilesGallery, AboutFilesDocuments, \
+	AboutFilesGallery, ReportFilesDocuments, YearReportFilesDocuments
 
 
 class SiteSettingsAdmin(admin.ModelAdmin):
@@ -11,6 +12,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
 		# чтобы можно было выполнить создание миграций базы данных
 		try:
 			SiteSettings.load().save()
+		# except ProgrammingError:
 		except ProgrammingError:
 			pass
 
@@ -29,5 +31,6 @@ admin.site.register(ProgramFilesGallery)
 admin.site.register(AboutFilesDocuments)
 admin.site.register(AboutFilesGallery)
 admin.site.register(ReportFilesDocuments)
+admin.site.register(YearReportFilesDocuments)
 
 

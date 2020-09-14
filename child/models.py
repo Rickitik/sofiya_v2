@@ -24,8 +24,8 @@ class Child(models.Model):
 	history = models.TextField('История ребенка')  # История ребенка
 	photo = models.ImageField('Изображение', upload_to='child_photo')  # 540Х400px оптимальный размер
 	url = models.SlugField(max_length=130, unique=True)
-	money_need = models.PositiveSmallIntegerField('Необходимая сумма в рублях')
-	money_collected = models.PositiveSmallIntegerField('Собранная сумма в рублях', default=0)
+	money_need = models.PositiveIntegerField('Необходимая сумма в рублях')
+	money_collected = models.PositiveIntegerField('Собранная сумма в рублях', default=0)
 	status = models.CharField('Статус ребенка', max_length=15, choices=STATUS_CHOICES, default='need_help')
 	problem_solution = models.CharField('Решение проблемы', max_length=60, blank=True, null=True)
 	publicated_on_site = models.BooleanField('Опубликована анкета', default=False)  # Опубликована ли анкета

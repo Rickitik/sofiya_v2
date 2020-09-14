@@ -45,7 +45,7 @@
                     <div class="card-img"><img src="{{ child.photo.url }}" alt="фото {{ child.name_rod }}"></div>
                     <div class="card-info">
                         <h4>{{ child.name }} {{ child.surname }}</h4>
-                        <p>{{ child.problem }}</p>
+                        <p>{{ child.problem_solution }}</p>
                         <div class="total"><span class="card-collected">Собрано {{ child.money_collected|intcomma }} ₽</span></div>
                         <div class="child-more"><a href="{{ child.get_absolute_url }}">Подробнее</a></div>
                     </div>

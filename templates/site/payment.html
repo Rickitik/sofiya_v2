@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Помощь фонду{% endblock title %}
+
+{% block description %}Наш фонд благодарит всех откликнувшихся за посильную помощь деткам{% endblock description %}
+
+{% block keywords %}благотворительный фонд, благодарности, отчеты{% endblock keywords %}
+
+{% block page_id %}payment_page{% endblock page_id %}
+
+{% block content %}
+    <section class="payment_info wrapper">
+        <div class="payment_page_info">
+            <h1>Сделать пожертвование</h1>
+            <p>Вы можете совершить доброе дело прямо здесь и сейчас — сделать пожертвования в Фонд поддержки детей удобным для вас способом.</p>
+        </div>
+    </section>
+    <section class="payment_way wrapper">
+        <div class="payment_page_way">
+            <h3>Выберите способ</h3>
+            <div class="payment_list">
+                <input type="radio" checked="checked" name="way_radio" id="bank_card_selector" hidden/>
+                <input type="radio" name="way_radio" id="service_pay_selector" hidden/>
+                <input type="radio" name="way_radio" id="bank_transfer_selector" hidden/>
+                <label for="bank_card_selector" class="pay-toggle" id="bank_card_label" onclick>Банковской картой</label>
+                <label for="service_pay_selector" class="pay-toggle" id="service_pay_label" onclick>Платежные сервисы</label>
+                <label for="bank_transfer_selector" class="pay-toggle" id="bank_transfer_label" onclick>Банковский перевод</label>
+
+                <div id="bank_card_id">
+                    <div class="bank_wrapper">
+                        <form action="#" method="post">
+                            <div class="amount_field">
+                                <div class="fixed_sums">
+                                    <label class="sum_label" for="100_rub">100 </label>
+                                    <input type="radio" name="amount" hidden id="100_rub" value="100">
+                                    <label class="sum_label checked" for="300_rub">300 </label>
+                                    <input type="radio" checked name="amount" hidden id="300_rub" value="300">
+                                    <label class="sum_label" for="500_rub">500 </label>
+                                    <input type="radio" name="amount" hidden id="500_rub" value="500">
+                                    <label class="sum_label" for="1000_rub">1000 </label>
+                                    <input type="radio" name="amount" hidden id="1000_rub" value="1000">
+                                </div>
+                                <input type="number" class="raz" id="other_rub" min="1" placeholder="Другая сумма">
+                                <label id="porpose_lbl" for="porpose">Уточните назначение платежа или оставьте по умолчанию</label>
+                                <input type="text" class="raz" id="porpose" value="На благотворительную деятельность">
+                            </div>
+                            <div class="everymonth">
+                                 <input name="everymonth_check" id="every_month" class="input" type="checkbox">
+                                <label class="every_month-label" for="every_month">Делать взнос ежемесячно (опционально)</label>
+                            </div>
+                            <div class="person_ids">
+                                <h3>Ваши данные</h3>
+                                <div class="person_id_list">
+                                    <input type="text" class="person_field" name="name" placeholder="Имя*" required>
+                                    <input type="text" class="person_field" name="surname" placeholder="Фамилия">
+                                    <input type="text" class="person_field" id="person_field_id" name="email" placeholder="E-mail*" required>
+                                    <input type="text" class="person_field" name="phone" placeholder="Телефон">
+                                </div>
+                                <div class="agree_class">
+                                    <input name="agree_with_ofert" id="agree_ofert_id" checked class="agree_with" type="checkbox">
+                                    <label class="every_month-label" for="agree_ofert_id">Согласен с условиями  <a href="#">Оферты</a></label>
+                                </div>
+
+                                <button class="donate">Внести пожертвование</button>
+
+                                <div class="agree_class">
+                                    <input name="agree_with_pers" id="agree_pers_id" class="agree_with" checked type="checkbox">
+                                    <label class="every_month-label" for="agree_pers_id">Даю согласие на обработку  <a href="#">персональных данных</a></label>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="garantee_of_secure">
+                            <h3>Гарантии безопасности</h3>
+                            <p>Процессинговый центр CloudPayments защищает и обрабатывает данные Вашей банковской карты по стандарту безопасности PCI DSS 3.0. Передача информации в платежный шлюз происходит с применением технологии шифрования SSL. Дальнейшая передача информации происходит по закрытым банковским сетям, имеющим наивысший уровень надежности. CloudPayments не передает данные Вашей карты нам и иным третьим лицам. Для дополнительной аутентификации держателя карты используется протокол 3D Secure. </p>
+                            <p>В случае, если у Вас есть вопросы по совершенному платежу, Вы можете обратиться в службу поддержки клиентов по электронной почте support@cloudpayments.ru.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="service_pay_id"></div>
+                <div id="bank_transfer_id">
+                    <div class="bank_tr_wrapper">
+                        <div class="bank_tr_rekv">
+                            <h3>Реквизиты</h3>
+                            <p>{{ name }}</p>
+                            <br>
+                            <p>{{ address }} <br>
+                            ИНН: {{ inn }} <br>
+                            КПП: {{ kpp }} <br>
+                            Расчетный счет: {{ ras_schet }} <br>
+                            {{ bank }} <br>
+                            к/с: {{ kor_schet }} <br>
+                            БИК: {{ bik }}</p>
+                        </div>
+                        <div class="bank_tr_files">
+                            <h3>Файлы</h3>
+                            {% if file_rekv %}
+                                <div class="schema"><a href="{{ file_rekv.url }}" download><div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon"><span>Реквизиты</span></div></a></div>
+                                <div class="schema"><a href="{{ file_blank.url }}" download><div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon"><span>Форма квитанции</span></div></a></div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="pay_porpose">
+                        <h3>Назначение платежа</h3>
+                        <p>Благотвортительное пожертвование для реализации программ фонда</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    window.onload = function () {
+        let sum_value = '';
+        let lbl = document.getElementsByClassName('sum_label'); // все лэйблы по классу
+        let radio = document.getElementsByName('amount'); // все радиокнопки по имени
+        let input = document.getElementById('other_rub'); // получаем поле ввода
+        let input_porpose = document.getElementById('porpose'); // получаем поле ввода
+        let input_everymonth = document.getElementById('every_month'); // получаем поле по ежемесячной оплате
+        let input_user_id = document.getElementById('person_field_id'); // получаем поле c id пользователя
+        for (let i=0; i<lbl.length; i++){ //для каждого лэйбла
+            lbl[i].addEventListener('click', function () {
+                radio[i].checked = true; // делаем кнопку активной
+                [...lbl].forEach(function (l) {
+                    l.classList.remove('checked');
+                });
+                input.classList.remove('checked');
+                lbl[i].classList.add('checked');
+                sum_value = Number.parseInt(radio[i].value);
+            })
+        }
+        input.onfocus = function () {
+            this.value = '';
+            this.placeholder = '';
+            this.classList.add('checked');
+        };
+        input_porpose.onfocus = function () {
+            // this.value = '';
+            this.classList.add('checked');
+
+        };
+        input.oninput = function () {
+            [...radio].forEach(function (c) { // для каждой кнопки
+                c.checked = false; // убираем выбранный параметр
+            });
+            [...lbl].forEach(function (l) {
+                l.classList.remove('checked');
+            });
+        };
+        input.onblur = function () { // при потере фокуса поля
+            sum_value = Number.parseInt(input.value);
+        };
+        input_porpose.onblur = function () { // при потере фокуса поля
+            if (!(input_porpose.value)){
+                input_porpose.value = 'На благотворительную деятельность'
+            }
+        };
+    }
+
+</script>
+{% endblock scripts %}

@@ -57,8 +57,9 @@
             </div>
         </div>
     </section>
-    {% if need_help_children %}
+
     <section class="info wrapper">
+    {% if need_help_children %}
         <div class="need-help-info-block">
             <div class="slider-wrapper">
                 <div class="info-heading">
@@ -92,6 +93,8 @@
                 </div>
             </div>
         </div>
+    {% endif %}
+    {% if already_helped_children %}
         <div class="already-helped-info-block">
             <div class="slider-wrapper">
                 <div class="info-heading">
@@ -111,7 +114,7 @@
                             </div>
                             <div class="slide_info">
                                 <h3 class="child-name">{{ child.name }} {{ child.surname }}</h3>
-                                <p class="child-description">{{ child.problem|truncatechars:53 }}</p>
+                                <p class="child-description">{{ child.problem_solution|truncatechars:53 }}</p>
                                 <p class="money_count">Собрано {{ child.money_collected|intcomma }} ₽</p>
                                 <div class="child-more"><a href="{{ child.get_absolute_url }}">Подробнее</a></div>
                             </div>
@@ -121,9 +124,10 @@
                 </div>
             </div>
         </div>
+    {% endif %}
         <div class="all_children-button"><a href="{% url 'child:child_list' %}">Все дети</a></div>
     </section>
-    {% endif %}
+
     {% get_news 4 as news %}
     {% if news %}
     <section class="news wrapper">
@@ -209,7 +213,7 @@
             nextArrow: $('.slider-next'),
             responsive: [
                 {
-                    breakpoint: 1024,
+                    breakpoint: 1030,
                     settings: {
                         slidesToShow: 3,
                         slidesToScroll: 2,
@@ -245,7 +249,7 @@
             nextArrow: $('.slider-next-2'),
             responsive: [
                 {
-                  breakpoint: 1024,
+                  breakpoint: 1030,
                   settings: {
                     slidesToShow: 3,
                     slidesToScroll: 2

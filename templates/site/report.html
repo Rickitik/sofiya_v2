@@ -44,7 +44,19 @@
                     {% endfor %}
                 {% endif %}
             </div>
-{#        TODO: добавить отчеты в минюст#}
+            <div class="list_files">
+                {% if year_reports %}
+                    {% for file in year_reports %}
+                        <div class="file">
+                            <a href="{{file.file.url}}" target="_blank">
+                                <div><img src="{% static 'img/pdf-icon.png' %}" alt="pdf-icon">
+                                    <span>{{ file.file_name }}</span>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
             <div class="news-more"><a href="{% url 'site_custom:about_page' %}">Официальные документы</a></div>
         </div>
     </section>

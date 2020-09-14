@@ -22,10 +22,12 @@ class SiteSettings(SingletonModel):
 	rekv_k_schet = models.CharField(verbose_name='Реквизиты - к.счет', max_length=50)
 	rekv_bik = models.CharField(verbose_name='Реквизиты - БИК', max_length=50)
 	file_rekvizity = models.FileField(upload_to='common_files', blank=True, null=True,
-										   verbose_name='Файл реквизиты')
+										verbose_name='Файл реквизиты')
 	file_pers_data = models.FileField(upload_to='common_files', blank=True, null=True, verbose_name='Файл обработка персональных данных')
 	file_zayavleniye = models.FileField(upload_to='common_files', blank=True, null=True, verbose_name='Файл Заявление на получение помощи')
 	file_list_documents = models.FileField(upload_to='common_files', blank=True, null=True, verbose_name='Файл Перечень документов')
+	file_forma_forbank = models.FileField(upload_to='common_files', blank=True, null=True,
+										  verbose_name='Файл форма квитанции')
 
 	def __str__(self):
 		return 'Настройки'
@@ -97,6 +99,21 @@ class ReportFilesDocuments(models.Model):
 		ordering = ('file_date',)
 		verbose_name = "Месячный Отчет"
 		verbose_name_plural = "Месячные Отчеты"
+
+	def __str__(self):
+		return f'{self.file_name}-{self.file_date}'
+
+
+class YearReportFilesDocuments(models.Model):
+	file_name = models.CharField('Имя файла отображаемое на сайте', max_length=120)
+	file_date = models.DateField('Год отчета')
+	file = models.FileField(upload_to='report_files', blank=True, null=True, verbose_name='Файл документа')
+	attached = models.ForeignKey(SiteSettings, blank=True, null=True, on_delete=models.CASCADE, related_name='attached_year_report_files')
+
+	class Meta:
+		ordering = ('file_date',)
+		verbose_name = "Годовой Отчет"
+		verbose_name_plural = "Годовые Отчеты"
 
 	def __str__(self):
 		return f'{self.file_name}-{self.file_date}'
