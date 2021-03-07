@@ -2376,7 +2376,7 @@ span.news_date {
     }
     [id='nav-toggle']:checked ~ .nav .social {
         left: 90px;
-        margin-top: 106px;
+        margin-top: 50px;
     }
     .stats-num {
         margin: 0;
