@@ -17,7 +17,7 @@ class Team(models.Model):
 		return reverse('team:team_detail', kwargs={'slug': self.url})
 
 	class Meta:
-		ordering = ('id',)
+		ordering = ('-id',)
 		verbose_name = 'Сотрудник'
 		verbose_name_plural = 'Сотрудники'
 

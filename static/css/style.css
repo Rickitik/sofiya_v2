@@ -19,6 +19,9 @@ a {
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
 }
+a:focus {
+    outline: none;
+}
 
 header {
     position: fixed;
